@@ -1,7 +1,6 @@
 
 // IMPORTS....................................................................................................
 import React, {useMemo, useEffect, useState,useRef} from 'react';
-// IMPORTS...............................................................................
 import PostList from './components/PostList';
 import MyButton from './components/UI/button/MyButton.js';
 import MyInput from './components/UI/input/MyInput.js';
@@ -11,7 +10,6 @@ import PostFilter from './components/PostFilter.js';
 import ComponentDate from './components/ComponentDate.js';
 import Calendar from './components/Calendar.js';
 import Notes from './components/Notes.js';
-
 import './styles/App.css';
 import './styles/responsive.css';
 
@@ -19,7 +17,7 @@ import './styles/responsive.css';
 function App() {
 
 
-   const [visible, setVisible] = useState(true);
+   const [visible, setVisible] = useState(false);
 
    let initNotesAll = [
    {
@@ -46,7 +44,7 @@ else{
 
 const [allNotes, setAllNotes] = useState(initNotesAll);
 
-const [posts, setPosts] = useState(
+const [notes, setNotes] = useState(
    allNotes[0].notes
    );
 
@@ -64,7 +62,7 @@ return (
    allNotes={allNotes}
    setAllNotes={setAllNotes}
    setVisible={setVisible}
-   setPosts={setPosts}
+   setNotes={setNotes}
    />
    </div>
 
@@ -72,8 +70,8 @@ return (
       visible
       ?
       <Notes  
-      posts={posts}
-      setPosts={setPosts}
+      notes={notes}
+      setNotes={setNotes}
       allNotes={allNotes}
       setAllNotes={setAllNotes}
       initNotesAll={initNotesAll}
