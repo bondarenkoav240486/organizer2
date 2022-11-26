@@ -1,282 +1,246 @@
 
-// IMPORTS.................................................................
 import React, {useMemo, useEffect, useState,useRef} from 'react';
 import MyButton from "./UI/button/MyButton";
 import ComponentDate from './ComponentDate.js';
+import {useDispatch,useSelector} from "react-redux";
+import {setDatesAction, setMonthAction, setYearAction, saveChangesAction, setInitNotesAllStateAction, setModalAction, setFilterAction, setSaveAction, setPostAction, setPostsAction, setAllNotesAction, setVisibleAction, increment, } from "../toolkitRedux/toolkitSlice";
 
+const Calendar = () => {
+    const dispatch = useDispatch();
+    const allNotes = useSelector(state => state.toolkit.allNotes);
+    const setAllNotes = (par) => ( 
+        dispatch(setAllNotesAction(par))
+    );
+    const setVisible = (par) => ( 
+        dispatch(setVisibleAction(par))
+    );
+    const setPosts = (par) => ( 
+        dispatch(setPostsAction(par))
+    );
+    const year = useSelector(state => state.toolkit.year);
+    const setYear = (par) => ( 
+        dispatch(setYearAction(par))
+    );
+    const month = useSelector(state => state.toolkit.month);    const setMonth = (par) => ( 
+        dispatch(setMonthAction(par))
+    );
 
-
-// .......................................................................
-const Calendar = ({allNotes,setAllNotes,setVisible,setPosts}) => {
-
-
-    let date  = new Date();
-    let initYear  = date.getFullYear();
-    const[year,setYear] = useState(initYear);
-    let initMonth = date.getMonth();
-    const[month,setMonth] = useState(initMonth);
     let initDates = draw(year,month)
-    const[dates,setDates] = useState(initDates);
+    // const[dates,setDates] = useState(initDates);
+    const dates = useSelector(state => state.toolkit.dates);
+    const setDates = (par) => ( 
+        dispatch(setDatesAction(par))
+    );
+    useEffect(()=>{
+        setDates(initDates)
+    },[])
 
-// arr of dates
-function range(count) {
- let arr = [];
- for(let i = 1;i<=count;i++){
-  arr.push(i)
-}
-return arr
-}
+    // arr of dates
+    function range(count) {
+        let arr = [];
+        for(let i = 1;i<=count;i++){
+            arr.push(i)
+        }
+        return arr
+    }
 
-// function for getting last day of month
-function getLastDay(year, month) {
- return new Date(year,month+1,0).getDate()
-}
+    // function for getting last day of month
+    function getLastDay(year, month) {
+        return new Date(year,month+1,0).getDate()
+    }
 
-// function for getting first day of month
-function getFirstWeekDay(year, month) {
- let date = new Date(year, month, 1);
- let num  = date.getDay();
- if (num == 0) {
-  return 6;
-} else {
-  return num - 1;
-}
-}
+    // function for getting first day of month
+    function getFirstWeekDay(year, month) {
+        let date = new Date(year, month, 1);
+        let num  = date.getDay();
+        if (num == 0) {
+            return 6;
+        } else {
+            return num - 1;
+        }
+    }
 
- //  function for getting last day last week of month
- function getLastWeekDay(year, month) {
-    let date = new Date(year, month + 1, 0);
-    let num  = date.getDay(); 
+    //  function for getting last day last week of month
+    function getLastWeekDay(year, month) {
+        let date = new Date(year, month + 1, 0);
+        let num  = date.getDay(); 
+        if (num == 0) {
+            return 6;
+        } else {
+            return num - 1;
+        }
+    }
 
-    if (num == 0) {
-     return 6;
- } else {
-     return num - 1;
- }
-}
+    //function for normalize arr(adding empty lines around the edges)
+    function normalize(arr, left, right) {
+        for(let i = 0;i< left;i++){
+            arr.unshift('')
+        }
+        for(let i = 0;i< right;i++){
+            arr.push('')
+        }
+        return arr
+    }
 
-//   function for normalize arr(adding empty lines around the edges)
-function normalize(arr, left, right) {
- for(let i = 0;i< left;i++){
-    arr.unshift('')
-}
-for(let i = 0;i< right;i++){
-    arr.push('')
-}
-return arr
-}
+    //  function for forming a two-dimensional array
+    function chunk(arr, n) {
+        // n - the number of elements in the subarray
+        let amountWeeks = arr.length/n
+        let arr2 = [];
+        for(let i = 0;i<amountWeeks;i++ ){
+            arr2.push(arr.splice(0,n));
+        }
+        return arr2
+    }
 
-//  function for forming a two-dimensional array
-function chunk(arr, n) {
-  // n - the number of elements in the subarray
-  let amountWeeks = arr.length/n
-  let arr2 = [];
-  for(let i = 0;i<amountWeeks;i++ ){
-   arr2.push(arr.splice(0,n));
-}
-return arr2
-}
+    // ....
+    function getNextYear(){
+        if (month == 11) {
+            let copyYear = year+1;
+            // setYear(copyYear);
+            setYear(year+1);
 
-// ....
-function getNextYear(){
- if (month == 11) {
-  let copyYear = year+1;
-  setYear(copyYear);
+            // return copyYear
+            return year+1
+        }
 
-  return copyYear
-}
+        let copyYear = year;
+        // setYear(copyYear);
+        setYear(year);
 
-let copyYear = year;
-setYear(copyYear);
+        return year
+    }
 
-return copyYear
-}
+    // ....
+    function getNextMonth(){
+        if(month==11){
+            let copyMonth = 0;
+            // setMonth(copyMonth);
+            setMonth(0);
 
-// ....
-function getNextMonth(){
-    if(month==11){
-     let copyMonth = 0;
-     setMonth(copyMonth);
+            // return copyMonth
+            return 0
+        } else {
+            // let copyMonth = month+1;
+            // setMonth(copyMonth);
+            setMonth(month+1);
 
-     return copyMonth
- }
- else{
-     let copyMonth = month+1;
-     setMonth(copyMonth);
+            // return  copyMonth
+            return  month+1
+        }
+    }
 
-     return  copyMonth
- }
-}
+    // ....
+    function getPrevYear(){
+        if (month == 0) {
+            let copyYear = year-1;
+            setYear(copyYear);
 
-// ....
-function getPrevYear(){
- if (month == 0) {
-  let copyYear = year-1;
-  setYear(copyYear);
+            return copyYear 
+        }
+        let copyYear = year;
+        setYear(copyYear);
 
-  return copyYear
-}
-let copyYear = year;
-setYear(copyYear);
+        return copyYear
+    }
 
-return copyYear
-}
+    // ....
+    function getPrevMonth(){
+        if(month==0){
+            let copyMonth = 11;
+            setMonth(copyMonth)
 
-// ....
-function getPrevMonth(){
-  console.log(month)
-  if(month==0){
-     let copyMonth = 11;
-     setMonth(copyMonth)
+            return copyMonth
+        } else {
+            let copyMonth = month-1;
+            setMonth(copyMonth);
 
-     return copyMonth
- }
- else{
-   let copyMonth = month-1;
-   setMonth(copyMonth);
-   console.log(month,copyMonth);
+            return copyMonth 
+        }
+    }
 
-   return copyMonth 
-}
-}
+    function draw( year, month) {
+        let arr = range(getLastDay(year, month));
+        let firstWeekDay = getFirstWeekDay(year, month);    
+        let lastWeekDay  = getLastWeekDay(year, month);
+        let datesBuffer = chunk(normalize(arr, firstWeekDay, 
+            6 - lastWeekDay), 7); 
 
-function draw( year, month) {
- let arr = range(getLastDay(year, month));
+        return datesBuffer
+    }
 
- let firstWeekDay = getFirstWeekDay(year, month);
- let lastWeekDay  = getLastWeekDay(year, month);
+    function next() {
+        const nextMonth = getNextMonth();
+        let nextDates = [...draw(getNextYear(), nextMonth )]
+        setDates(nextDates);
+    }
 
- let datesBuffer = chunk(normalize(arr, firstWeekDay, 
-  6 - lastWeekDay), 7); 
+    function prev() {
+        let prevtDates = [...draw(getPrevYear(), getPrevMonth() )]
+        setDates(prevtDates);
+    }
 
+    function createInfoMonth(month){
+        let  monthes = 
+            [
+                'Січень','Лютий','Березень','Квітень', 
+                'Травень','Червень','Липень','Серпень',
+                'Вересень','Жовтень','Листопад','Грудень'
+            ];
 
- return datesBuffer
-}
+        return monthes[month]
+    } 
 
+    return (
+        <div id="calendar">
+            <h1 
+                className ='info'>
+                {year}  
+                {createInfoMonth(month)}
+            </h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>пн</th>
+                        <th>вт</th>
+                        <th>ср</th>
+                        <th>чт</th>
+                        <th>пт</th>
+                        <th>сб</th>
+                        <th>нд</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {dates.map((week, index) =>
+                        <tr key={index}>
+                            {week.map((date, index) =>
+                                <ComponentDate 
+                                    key={index}
+                                    allNotes={allNotes}
+                                    setAllNotes={setAllNotes}
+                                >
+                                    {date}
+                                </ComponentDate>
+                            )} 
+                        </tr>
+                    )}
+                </tbody>
+            </table>
 
-function next() {
-   const nextMonth = getNextMonth();
-   let nextDates = [...draw(getNextYear(), nextMonth )]
-   setDates(nextDates);
-}
-
-function prev() {
-  let prevtDates = [...draw(getPrevYear(), getPrevMonth() )]
-  setDates(prevtDates);
-}
-
-
-
-function createInfoMonth(month){
-  let  monthes = [
-  'Січень','Лютий','Березень','Квітень', 
-  'Травень','Червень','Липень','Серпень',
-  'Вересень','Жовтень','Листопад','Грудень'
-  ];
-  return monthes[month]
-} 
-
-
-
-function organize(event) {
- setVisible(true);
-
- let tdArr = Array.from(document.querySelectorAll('td'));
- tdArr.forEach((elem,i,arr) => {
-    elem.style.background = "transparent";
-})
- event.target.style.background = "lightblue";
-//  
-if( event.target.textContent == ''){
-   return 
-}
-else{
-}  
-// 
-let id = year + '.' + month + '.' + event.target.textContent;
-let obj ={};
-// 
-if( allNotes.find(elem=>elem.id==id)==undefined ){
-  obj = {
-     id:id,
-     notes:[
-   // {id:'1', title:id, body:''},
-   // {id:'11', title:'', body:''},
-   // {id:'111', title:'', body:''},
-   ]
-}
-allNotes.push(obj);
-}
-else{
-}
-// 
-allNotes[0].dateId = allNotes.find(elem=>elem.id==id).id
-// 
-setPosts(  [...allNotes.find(elem=>elem.id==id).notes]  )
-// 
-setAllNotes([...allNotes ])
-// 
-}
-
-
-
-return (
-
-   <div id="calendar">
-   <h1 className ='info'>{year}  {createInfoMonth(month)}</h1>
-
-   <table>
-   <thead>
-   <tr>
-   <th>пн</th>
-   <th>вт</th>
-   <th>ср</th>
-   <th>чт</th>
-   <th>пт</th>
-   <th>сб</th>
-   <th>нд</th>
-   </tr>
-   </thead>
-   <tbody>
-   {dates.map((week, index) =>
-       <tr key={index}>
-       {week.map((date, index) =>
-
-         <ComponentDate 
-         key={index}
-         organize = {organize}
-                      allNotes={allNotes}
-                      setAllNotes={setAllNotes}
-
-                      >
-                      {date}
-                      </ComponentDate>
-
-                      )} 
-
-                      </tr>
-
-                      )}
-
-       </tbody>
-       </table>
-
-
-       <div className="nav">
-       <MyButton 
-       onClick={prev }
-       >
-       ←  
-       </MyButton>
-       <MyButton 
-       onClick={next }
-       >
-       →
-       </MyButton>
+            <div className="nav">
+                <MyButton 
+                    onClick={prev }
+                >
+                    ←  
+                </MyButton>
+                <MyButton 
+                    onClick={next }
+                >
+                    →
+                </MyButton>
+            </div>
        </div>
-       </div>
-
-       );
+    );
 };
 
 export default Calendar ;

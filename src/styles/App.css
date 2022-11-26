@@ -29,7 +29,7 @@ body{
 }
 
 .calendarWrapper{
-  min-height: calc(100vh - 45vh);
+/*  min-height: calc(100vh - 45vh);*/
 }
 
 #calendar{
