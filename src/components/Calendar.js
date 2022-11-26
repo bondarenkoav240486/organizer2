@@ -25,15 +25,20 @@ const Calendar = () => {
         dispatch(setMonthAction(par))
     );
 
-    let initDates = draw(year,month)
+    let initDates = draw(year, month)
+    console.log('year,month :', year, month)
     // const[dates,setDates] = useState(initDates);
     const dates = useSelector(state => state.toolkit.dates);
+    console.log('dates :', dates)
     const setDates = (par) => ( 
         dispatch(setDatesAction(par))
     );
-    useEffect(()=>{
+    // useEffect(()=>{
+    //     setDates(initDates)
+    // },[])
+     useEffect(()=>{
         setDates(initDates)
-    },[])
+    },[year, month])
 
     // arr of dates
     function range(count) {
@@ -96,25 +101,29 @@ const Calendar = () => {
     // ....
     function getNextYear(){
         if (month == 11) {
-            let copyYear = year+1;
+            // let copyYear = year+1;
             // setYear(copyYear);
             setYear(year+1);
-
+            // const nextYear = useSelector(state => state.toolkit.year);
             // return copyYear
-            return year+1
-        }
+            // return year+1
+            // return nextYear
+        } else {
 
-        let copyYear = year;
+        // let copyYear = year;
         // setYear(copyYear);
-        setYear(year);
+            setYear(year);
+        // const NextYear = useSelector(state => state.toolkit.year);
 
-        return year
+            // return year
+        // return NextYear
+        }
     }
 
     // ....
     function getNextMonth(){
         if(month==11){
-            let copyMonth = 0;
+            // let copyMonth = 0;
             // setMonth(copyMonth);
             setMonth(0);
 
@@ -133,29 +142,38 @@ const Calendar = () => {
     // ....
     function getPrevYear(){
         if (month == 0) {
-            let copyYear = year-1;
-            setYear(copyYear);
+            // let copyYear = year-1;
+            // setYear(copyYear);
+            setYear(year-1);
 
-            return copyYear 
+            // return copyYear 
+            return year-1 
+        } else {
+        // let copyYear = year;
+        // setYear(copyYear);
+            setYear(year);
+
+        // return copyYear
+            return year
         }
-        let copyYear = year;
-        setYear(copyYear);
-
-        return copyYear
     }
 
     // ....
     function getPrevMonth(){
         if(month==0){
-            let copyMonth = 11;
-            setMonth(copyMonth)
+            // let copyMonth = 11;
+            // setMonth(copyMonth)
+            setMonth(11)
 
-            return copyMonth
+            // return copyMonth
+            // return 11
         } else {
-            let copyMonth = month-1;
-            setMonth(copyMonth);
+            // let copyMonth = month-1;
+            // setMonth(copyMonth);
+            setMonth(month-1);
 
-            return copyMonth 
+            // return copyMonth 
+            // return month-1 
         }
     }
 
@@ -170,14 +188,21 @@ const Calendar = () => {
     }
 
     function next() {
-        const nextMonth = getNextMonth();
-        let nextDates = [...draw(getNextYear(), nextMonth )]
-        setDates(nextDates);
+        // const nextMonth = getNextMonth();
+        // let nextDates = [...draw(getNextYear(), nextMonth )]
+        // setDates(nextDates);
+        getNextYear()
+        getNextMonth()      
+        // setDates( draw( getNextYear(), getNextMonth() ) );
+        // setDates( draw(year, month) );
     }
 
     function prev() {
-        let prevtDates = [...draw(getPrevYear(), getPrevMonth() )]
-        setDates(prevtDates);
+        // let prevtDates = [...draw(getPrevYear(), getPrevMonth() )]
+        // setDates(prevtDates);
+        getPrevYear()
+        getPrevMonth() 
+        // setDates( draw(getPrevYear(), getPrevMonth() ) );
     }
 
     function createInfoMonth(month){
@@ -194,9 +219,10 @@ const Calendar = () => {
     return (
         <div id="calendar">
             <h1 
-                className ='info'>
+                className ='info'
+            >
+                {createInfoMonth(month) + " "}
                 {year}  
-                {createInfoMonth(month)}
             </h1>
             <table>
                 <thead>

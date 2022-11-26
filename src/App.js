@@ -6,7 +6,7 @@ import MyInput from './components/UI/input/MyInput.js';
 import MySelect from './components/UI/select/MySelect.js';
 import PostForm from './components/PostForm';
 import PostFilter from './components/PostFilter.js';
-import ComponentDate from './components/ComponentDate.js';
+import CalendarDate from './components/ComponentDate.js';
 import Calendar from './components/Calendar.js';
 import Notes from './components/Notes.js';
 import {useDispatch,useSelector} from "react-redux";
@@ -73,16 +73,16 @@ function App() {
             <div className='organizer' >
                 <div className="calendarWrapper">
                     <Calendar/>
+                </div>
+                <>
                     {cash}<br/>
                     <button onClick={()=>addCash()}>add money</button>
                     <button onClick={()=>setVisible(visible?false:true)}>visible</button>
-                    <button onClick={()=>setPosts( allNotes[1].notes)}>setPosts</button>
-                </div>
+                </>
                 {
                     visible
                     ?
                     <>
-                        'visible'
                         <Notes  
                             posts={posts}
                             setPosts={setPosts}
