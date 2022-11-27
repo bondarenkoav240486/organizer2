@@ -49,39 +49,44 @@ const Notes = () => {
         dispatch(setModalAction(par))
     );
 
-    let initNotesAll = 
-    [
-        {
-            id:'postsFrominitNotesAll',
-            notes:[
-                {id:'1IDpostsFrominitNotesAll[0]', title:'1titlepostsFrominitNotesAll', body:'1bodypostsFrominitNotesAll'},
-                {id:'2IDpostsFrominitNotesAll', title:'2titlepostsFrominitNotesAll', body:'2bodypostsFrominitNotesAll3'},
-                {id:'3IDpostsFrominitNotesAll', title:'3titlepostsFrominitNotesAll', body:'3bodypostsFrominitNotesAll'},
-            ],
-            dateId:'initNotesAll',
-        },
-        {
-            id:'',
-            notes:[],
-        },
-    ];
+    let bufferInitNotesAll 
+    // = 
+        // [
+        //     {
+        //         id:'postsFrominitNotesAll',
+        //         notes:[
+        //             {id:'1IDpostsFrominitNotesAll[0]', title:'1titlepostsFrominitNotesAll', body:'1bodypostsFrominitNotesAll'},
+        //             {id:'2IDpostsFrominitNotesAll', title:'2titlepostsFrominitNotesAll', body:'2bodypostsFrominitNotesAll3'},
+        //             {id:'3IDpostsFrominitNotesAll', title:'3titlepostsFrominitNotesAll', body:'3bodypostsFrominitNotesAll'},
+        //         ],
+        //         dateId:'initNotesAll',
+        //     },
+        //     {
+        //         id:'',
+        //         notes:[],
+        //     },
+        // ];
     if (JSON.parse( localStorage.getItem('key2') )===null) {
-        localStorage.setItem('key2',JSON.stringify(initNotesAll));
+        // localStorage.setItem('key2',JSON.stringify(initNotesAll));
+        localStorage.setItem('key2',JSON.stringify(allNotes[0].notes));
     }
     else{
-         initNotesAll = JSON.parse( localStorage.getItem('key2') );
+         // initNotesAll = JSON.parse( localStorage.getItem('key2') );
+         bufferInitNotesAll = JSON.parse( localStorage.getItem('key2') );
     }
-
     useEffect(() => {
-        setAllNotes(initNotesAll)
-    }, [])
+        setAllNotes(bufferInitNotesAll)       
+    }, []);
+    useEffect(() => {
+        localStorage.setItem('key2',JSON.stringify(allNotes));
+    }, [allNotes]);
+    console.log('localStorage :',JSON.parse( localStorage.getItem('key2') ) )
+
     useEffect(() => {
         setPosts( allNotes[0].notes);
     }, [allNotes[0].notes])
    
-    useEffect(() => {
-        localStorage.setItem('key2',JSON.stringify(allNotes));
-    }, [allNotes])
+    
 
     //delete all notes (from localStorage) 
     const removeAllNotes = () => {

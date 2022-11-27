@@ -5,54 +5,31 @@ const toolkitSlice = createSlice({
 
 	name: "toolkit",
 	initialState: {
-		count: 0,
-		// initNotesAllState:[
-		// 	{
-		// 	id:'',
-		// 	notes:[
-   		// 		{id:'1', title:'1', body:''},
-   		// 		{id:'11', title:'1', body:''},
-   		// 		{id:'111', title:'1', body:''},
-		// 		],
-		// 	dateId:'',
-		// 	},
-		// 	{
-		// 		id:'',
-		// 		notes:[{id:'111', title:'1', body:''},],
-		// 	},
-		// ],
 		visible: true,
 		allNotes:  
-		[
-			{
-			id:'postsFromallNotes0',
-			notes:[
-   				// {id:'1', title:'postsFromallNotes0', body:''},
-   				// {id:'11', title:'postsFromallNotes0', body:''},
-   				// {id:'111', title:'postsFromallNotes0', body:''},
-				],
-			dateId:'Init!',
-			},
-			{
-				id:'',
-				notes:[{id:'postsFromallNotes0', title:'postsFromallNotes0', body:'postsFromallNotes0'},],
-			},
-		],
-		posts:[
-			// {id:'zero', title:'1', body:''},
-			// {id:'11', title:'1', body:''},
-   			// {id:'111', title:'1', body:''},
-   			],
-		// posts:this.allNotes,
+			[
+				{
+				id:'postsFromallNotes0',
+				notes:[
+   					{id:'1', title:'STATEpostsFromallNotes0', body:''},
+   					{id:'11', title:'STATEpostsFromallNotes0', body:''},
+   					{id:'111', title:'STATEpostsFromallNotes0', body:''},
+					],
+				dateId:'Init!',
+				},
+				{
+					id:'',
+					notes:[{id:'postsFromallNotes0', title:'postsFromallNotes0', body:'postsFromallNotes0'},],
+				},
+			],
+		posts:[],
 		post:{title:'!1',body:'!1'},
 		save:true,
 		filter:{sort:'', query:''},
 		modal:false,
-		// ................................................
 		year:new Date().getFullYear(),
 		month:new Date().getMonth(),
 		dates:[],
-
 	},
 	reducers: {
 		increment(state,action) {
