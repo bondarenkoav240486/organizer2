@@ -1,34 +1,35 @@
 
-import React, {useEffect, useState,useRef} from 'react';
+// import React, {useEffect} from 'react';
+import React from 'react';
 import MyButton from './UI/button/MyButton.js';
 import MyTextArea from './UI/textArea/MyTextArea.js';
 import MyInput from './UI/input/MyInput.js';
 import {useDispatch,useSelector} from "react-redux";
 import {setallNotesFindIdNotesAction, 
-        setInitNotesAllStateAction, 
+        // setInitNotesAllStateAction, 
         setModalAction, 
-        setFilterAction, 
+        // setFilterAction, 
         setSaveAction, 
         setPostAction, 
         setPostsAction, 
-        setAllNotesAction, 
-        setVisibleAction, 
-        increment, } from "../toolkitRedux/toolkitSlice";
+        // setAllNotesAction, 
+        setVisibleAction,
+        } from "../toolkitRedux/toolkitSlice";
 
 const PostForm = () => {
     const dispatch = useDispatch();
-    const initNotesAllState = useSelector(state => state.toolkit.initNotesAllState);
-    const setInitNotesAllState = (par) => ( 
-        dispatch(setInitNotesAllStateAction(par))
-    )
-    const visible = useSelector(state => state.toolkit.visible);
-    const setVisible = (par) => ( 
-        dispatch(setVisibleAction(par))
-    );
+    // const initNotesAllState = useSelector(state => state.toolkit.initNotesAllState);
+    // const setInitNotesAllState = (par) => ( 
+    //     dispatch(setInitNotesAllStateAction(par))
+    // )
+    // const visible = useSelector(state => state.toolkit.visible);
+    // const setVisible = (par) => ( 
+    //     dispatch(setVisibleAction(par))
+    // );
     const allNotes = useSelector(state => state.toolkit.allNotes);
-    const setAllNotes = (par) => ( 
-        dispatch(setAllNotesAction(par))
-    );
+    // const setAllNotes = (par) => ( 
+    //     dispatch(setAllNotesAction(par))
+    // );
     const posts = useSelector(state => state.toolkit.posts);
     const setPosts = (par) => ( 
         dispatch(setPostsAction(par))
@@ -42,10 +43,10 @@ const PostForm = () => {
     const setSave = (par) => ( 
         dispatch(setSaveAction(par))
     );
-    const filter = useSelector(state => state.toolkit.filter);
-    const setFilter = (par) => ( 
-        dispatch(setFilterAction(par))
-    );
+    // const filter = useSelector(state => state.toolkit.filter);
+    // const setFilter = (par) => ( 
+    //     dispatch(setFilterAction(par))
+    // );
     const modal = useSelector(state => state.toolkit.modal);
     const setModal = (par) => ( 
         dispatch(setModalAction(par))
@@ -78,7 +79,6 @@ const PostForm = () => {
         let i = posts.indexOf( posts.find(p=>p.id==editedPost.id) )
         setPosts([...posts.slice(0, i), editedPost, ...posts.slice( i + 1)])
         setSave(true)
-        console.log(save)
     }
 
     const saveEditedPost = (e) => {

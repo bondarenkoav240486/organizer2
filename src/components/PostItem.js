@@ -1,7 +1,8 @@
 import React from 'react';
 import MyButton from './UI/button/MyButton.js';
 import {useDispatch,useSelector} from "react-redux";
-import {setAllNotesAction, 
+import {
+        // setAllNotesAction, 
         setallNotesFindIdNotesAction,
         setModalAction, 
         setSaveAction, 
@@ -11,22 +12,22 @@ import {setAllNotesAction,
 const PostItem = (props) => {
     const dispatch = useDispatch();
     const allNotes = useSelector(state => state.toolkit.allNotes);
-    const setAllNotes = (par) => ( 
-        dispatch(setAllNotesAction(par))
-    );
+    // const setAllNotes = (par) => ( 
+    //     dispatch(setAllNotesAction(par))
+    // );
     const posts = useSelector(state => state.toolkit.posts);
     const setPosts = (par) => ( 
         dispatch(setPostsAction(par))
     );
-    const save = useSelector(state => state.toolkit.save);
+    // const save = useSelector(state => state.toolkit.save);
     const setSave = (par) => ( 
         dispatch(setSaveAction(par))
     );
-    const modal = useSelector(state => state.toolkit.modal);
+    // const modal = useSelector(state => state.toolkit.modal);
     const setModal = (par) => ( 
         dispatch(setModalAction(par))
     );
-    const post = useSelector(state => state.toolkit.post);
+    // const post = useSelector(state => state.toolkit.post);
     const setPost = (par) => ( 
         dispatch(setPostAction(par))
     );
@@ -53,13 +54,13 @@ const PostItem = (props) => {
         <div className="post">
             <div className="post__content">
                 <strong>{props.post.title}</strong>
-             </div>
+            </div>
             <div className="post__btns">
                 <MyButton onClick={() => openPost(props.post)}>
                     відкрити
                 </MyButton>
                 <MyButton onClick={() => removePost(props.post)}>
-                    видалити
+                    x
                 </MyButton>
             </div>
         </div>

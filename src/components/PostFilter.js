@@ -7,7 +7,6 @@ import {useDispatch,useSelector} from "react-redux";
 
 const PostFilter = () => {
      const dispatch = useDispatch();
-
      const filter = useSelector(state => state.toolkit.filter);
      const setFilter = (par) => ( 
           dispatch(setFilterAction(par))

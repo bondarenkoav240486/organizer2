@@ -3,35 +3,38 @@ import React, {useEffect} from 'react';
 import MyButton from "./UI/button/MyButton";
 import ComponentDate from './ComponentDate.js';
 import {useDispatch,useSelector} from "react-redux";
-import {setDatesAction, setMonthAction, setYearAction, 
-        saveChangesAction, 
-        setInitNotesAllStateAction, 
-        setModalAction, 
-        setFilterAction, 
-        setSaveAction, 
-        setPostAction, 
-        setPostsAction, 
-        setAllNotesAction, 
-        setVisibleAction} from "../toolkitRedux/toolkitSlice";
+import {setDatesAction, 
+        setMonthAction, 
+        setYearAction, 
+        // saveChangesAction, 
+        // setInitNotesAllStateAction, 
+        // setModalAction, 
+        // setFilterAction, 
+        // setSaveAction, 
+        // setPostAction, 
+        // setPostsAction, 
+        // setAllNotesAction, 
+        // setVisibleAction
+        } from "../toolkitRedux/toolkitSlice";
 
 const Calendar = () => {
     const dispatch = useDispatch();
-    const allNotes = useSelector(state => state.toolkit.allNotes);
-    const setAllNotes = (par) => ( 
-        dispatch(setAllNotesAction(par))
-    );
-    const setVisible = (par) => ( 
-        dispatch(setVisibleAction(par))
-    );
-    const setPosts = (par) => ( 
-        dispatch(setPostsAction(par))
-    );
+    // const allNotes = useSelector(state => state.toolkit.allNotes);
+    // const setAllNotes = (par) => ( 
+    //     dispatch(setAllNotesAction(par))
+    // );
+    // const setVisible = (par) => ( 
+    //     dispatch(setVisibleAction(par))
+    // );
+    // const setPosts = (par) => ( 
+    //     dispatch(setPostsAction(par))
+    // );
     const year = useSelector(state => state.toolkit.year);
     const setYear = (par) => ( 
         dispatch(setYearAction(par))
     );
     const month = useSelector(state => state.toolkit.month);
-        const setMonth = (par) => ( 
+    const setMonth = (par) => ( 
         dispatch(setMonthAction(par))
     );
 
@@ -112,7 +115,6 @@ const Calendar = () => {
         return datesBuffer
     }
 
-    // ....
     function getNextYear(){
         if (month == 11) {
             setYear(year+1);
@@ -121,7 +123,6 @@ const Calendar = () => {
         }
     }
 
-    // ....
     function getNextMonth(){
         if(month==11){
             setMonth(0);
@@ -135,7 +136,6 @@ const Calendar = () => {
         getNextMonth()      
     }
 
-    // ....
     function getPrevYear(){
         if (month == 0) {
             setYear(year-1);
@@ -145,7 +145,6 @@ const Calendar = () => {
         }
     }
 
-    // ....
     function getPrevMonth(){
         if(month==0){
             setMonth(11)
@@ -196,8 +195,6 @@ const Calendar = () => {
                             {week.map((date, index) =>
                                 <ComponentDate 
                                     key={index}
-                                    allNotes={allNotes}
-                                    setAllNotes={setAllNotes}
                                 >
                                     {date}
                                 </ComponentDate>

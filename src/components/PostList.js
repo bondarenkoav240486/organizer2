@@ -1,17 +1,18 @@
-import React, {useMemo, useEffect, useState,useRef} from 'react';
+// import React, {useMemo, useEffect, useState,useRef} from 'react';
+import React, {useMemo} from 'react';
 import PostItem from "./PostItem";
 import {TransitionGroup, CSSTransition} from "react-transition-group";
 import {useDispatch,useSelector} from "react-redux";
-import {saveChangesAction, 
-        setInitNotesAllStateAction, 
-        setModalAction, 
+import {
+        // saveChangesAction, 
+        // setModalAction, 
         setFilterAction, 
-        setSaveAction, 
-        setPostAction, 
+        // setSaveAction, 
+        // setPostAction, 
         setPostsAction, 
-        setAllNotesAction, 
-        setVisibleAction, 
-        increment, } from "../toolkitRedux/toolkitSlice";
+        // setAllNotesAction, 
+        // setVisibleAction,
+         } from "../toolkitRedux/toolkitSlice";
 
 // COMPONENT
 const PostList = () => {
@@ -20,15 +21,14 @@ const PostList = () => {
     const setPosts = (par) => ( 
         dispatch(setPostsAction(par))
     );
-   
-    const allNotes = useSelector(state => state.toolkit.allNotes);
-    
-    let dateId = allNotes[0].dateId
- 
     const filter = useSelector(state => state.toolkit.filter);
     const setFilter = (par) => ( 
         dispatch(setFilterAction(par))
     );
+   
+    const allNotes = useSelector(state => state.toolkit.allNotes);
+    
+    let dateId = allNotes[0].dateId
 
     //POSTS sortedAndSearched....................................
     const sortedPosts = useMemo(()=>{

@@ -3,41 +3,43 @@
 import React from 'react';
 
 import {useDispatch,useSelector} from "react-redux";
-import {setNotesOfThisDateAction, 
+import {
+        setNotesOfThisDateAction, 
         setallNotesDateIdAction, 
         pushNewNotesDateAction, 
-        setDatesAction, 
-        setMonthAction, 
-        setYearAction, 
-        saveChangesAction, 
-        setInitNotesAllStateAction, 
-        setModalAction, 
-        setFilterAction, 
-        setSaveAction, 
-        setPostAction, 
-        setPostsAction, 
-        setAllNotesAction, 
-        setVisibleAction} from "../toolkitRedux/toolkitSlice";
+        // setDatesAction, 
+        // setMonthAction, 
+        // setYearAction, 
+        // saveChangesAction, 
+        // setInitNotesAllStateAction, 
+        // setModalAction, 
+        // setFilterAction, 
+        // setSaveAction, 
+        // setPostAction, 
+        // setPostsAction, 
+        // setAllNotesAction, 
+        setVisibleAction
+        } from "../toolkitRedux/toolkitSlice";
 
 
 const ComponentDate = ({children, index}) => {
     const dispatch = useDispatch();
     const allNotes = useSelector(state => state.toolkit.allNotes);
-     const setAllNotes = (par) => ( 
-        dispatch(setAllNotesAction(par))
-    );
+    //  const setAllNotes = (par) => ( 
+    //     dispatch(setAllNotesAction(par))
+    // );
     const setVisible = (par) => ( 
         dispatch(setVisibleAction(par))
     );
     const year = useSelector(state => state.toolkit.year);
-    const setYear = (par) => ( 
-        dispatch(setYearAction(par))
-    );
-    const posts = useSelector(state => state.toolkit.posts);
+    // const setYear = (par) => ( 
+    //     dispatch(setYearAction(par))
+    // );
+    // const posts = useSelector(state => state.toolkit.posts);
     const month = useSelector(state => state.toolkit.month);
-    const setPosts = (par) => ( 
-        dispatch(setPostsAction(par))
-    );
+    // const setPosts = (par) => ( 
+    //     dispatch(setPostsAction(par))
+    // );
 
     function organize(event) {
         setVisible(true);
@@ -49,7 +51,6 @@ const ComponentDate = ({children, index}) => {
         if( event.target.textContent !== ''){
             event.target.style.background = "lightblue";
         } else {
-        // if( event.target.textContent == ''){
             return 
         }
 
@@ -61,11 +62,7 @@ const ComponentDate = ({children, index}) => {
             obj = 
                 {
                     id:id,
-                    notes:
-                        [
-                        //     {id:'1', title:id+'titlenew notes', body:'bodynew notes'},
-                        //     {id:'11', title:id+'titlenew notes', body:'bodynew notes'},
-                        ]
+                    notes:[]
                 };
             dispatch( pushNewNotesDateAction(obj) );
         }
