@@ -101,11 +101,8 @@ const toolkitSlice = createSlice({
 			state.allNotes.push(action.payload)
 		},
 		setallNotesDateIdAction(state,action) {
-			console.log('Enter')
 			state.allNotes[0].dateId = state.allNotes.find(elem=>elem.id==action.payload).id
 			// state.allNotes[0].dateId = action.payload
-			console.log('allNotes.dateId :', state.allNotes[0].dateId );
-
 		},
 		setNotesOfThisDateAction(state,action) {
 			// state.posts =   [...allNotes.find(elem=>elem.id==id).notes]  		
@@ -113,7 +110,8 @@ const toolkitSlice = createSlice({
 		},
 		setallNotesFindIdNotesAction(state,action) {
 			// state.posts =   [...allNotes.find(elem=>elem.id==id).notes]  		
-			state.allNotes.find(elem=>elem.id==action.payload).notes = state.posts;  
+			state.allNotes.find(elem=>elem.id==action.payload).notes = state.posts;
+        	// localStorage.setItem('key2',JSON.stringify(state.allNotes));
 		},
 	}	
 })

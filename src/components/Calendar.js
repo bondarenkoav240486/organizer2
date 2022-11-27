@@ -1,9 +1,18 @@
 
-import React, {useMemo, useEffect, useState,useRef} from 'react';
+import React, {useEffect} from 'react';
 import MyButton from "./UI/button/MyButton";
 import ComponentDate from './ComponentDate.js';
 import {useDispatch,useSelector} from "react-redux";
-import {setDatesAction, setMonthAction, setYearAction, saveChangesAction, setInitNotesAllStateAction, setModalAction, setFilterAction, setSaveAction, setPostAction, setPostsAction, setAllNotesAction, setVisibleAction, increment, } from "../toolkitRedux/toolkitSlice";
+import {setDatesAction, setMonthAction, setYearAction, 
+        saveChangesAction, 
+        setInitNotesAllStateAction, 
+        setModalAction, 
+        setFilterAction, 
+        setSaveAction, 
+        setPostAction, 
+        setPostsAction, 
+        setAllNotesAction, 
+        setVisibleAction} from "../toolkitRedux/toolkitSlice";
 
 const Calendar = () => {
     const dispatch = useDispatch();
@@ -21,21 +30,16 @@ const Calendar = () => {
     const setYear = (par) => ( 
         dispatch(setYearAction(par))
     );
-    const month = useSelector(state => state.toolkit.month);    const setMonth = (par) => ( 
+    const month = useSelector(state => state.toolkit.month);
+        const setMonth = (par) => ( 
         dispatch(setMonthAction(par))
     );
 
     let initDates = draw(year, month)
-    console.log('year,month :', year, month)
-    // const[dates,setDates] = useState(initDates);
     const dates = useSelector(state => state.toolkit.dates);
-    console.log('dates :', dates)
     const setDates = (par) => ( 
         dispatch(setDatesAction(par))
     );
-    // useEffect(()=>{
-    //     setDates(initDates)
-    // },[])
      useEffect(()=>{
         setDates(initDates)
     },[year, month])
@@ -98,85 +102,6 @@ const Calendar = () => {
         return arr2
     }
 
-    // ....
-    function getNextYear(){
-        if (month == 11) {
-            // let copyYear = year+1;
-            // setYear(copyYear);
-            setYear(year+1);
-            // const nextYear = useSelector(state => state.toolkit.year);
-            // return copyYear
-            // return year+1
-            // return nextYear
-        } else {
-
-        // let copyYear = year;
-        // setYear(copyYear);
-            setYear(year);
-        // const NextYear = useSelector(state => state.toolkit.year);
-
-            // return year
-        // return NextYear
-        }
-    }
-
-    // ....
-    function getNextMonth(){
-        if(month==11){
-            // let copyMonth = 0;
-            // setMonth(copyMonth);
-            setMonth(0);
-
-            // return copyMonth
-            return 0
-        } else {
-            // let copyMonth = month+1;
-            // setMonth(copyMonth);
-            setMonth(month+1);
-
-            // return  copyMonth
-            return  month+1
-        }
-    }
-
-    // ....
-    function getPrevYear(){
-        if (month == 0) {
-            // let copyYear = year-1;
-            // setYear(copyYear);
-            setYear(year-1);
-
-            // return copyYear 
-            return year-1 
-        } else {
-        // let copyYear = year;
-        // setYear(copyYear);
-            setYear(year);
-
-        // return copyYear
-            return year
-        }
-    }
-
-    // ....
-    function getPrevMonth(){
-        if(month==0){
-            // let copyMonth = 11;
-            // setMonth(copyMonth)
-            setMonth(11)
-
-            // return copyMonth
-            // return 11
-        } else {
-            // let copyMonth = month-1;
-            // setMonth(copyMonth);
-            setMonth(month-1);
-
-            // return copyMonth 
-            // return month-1 
-        }
-    }
-
     function draw( year, month) {
         let arr = range(getLastDay(year, month));
         let firstWeekDay = getFirstWeekDay(year, month);    
@@ -187,22 +112,51 @@ const Calendar = () => {
         return datesBuffer
     }
 
-    function next() {
-        // const nextMonth = getNextMonth();
-        // let nextDates = [...draw(getNextYear(), nextMonth )]
-        // setDates(nextDates);
-        getNextYear()
-        getNextMonth()      
-        // setDates( draw( getNextYear(), getNextMonth() ) );
-        // setDates( draw(year, month) );
+    // ....
+    function getNextYear(){
+        if (month == 11) {
+            setYear(year+1);
+        } else {
+            setYear(year);
+        }
     }
 
+    // ....
+    function getNextMonth(){
+        if(month==11){
+            setMonth(0);
+        } else {
+            setMonth(month+1);
+        }
+    }
+
+    function next() {
+        getNextYear()
+        getNextMonth()      
+    }
+
+    // ....
+    function getPrevYear(){
+        if (month == 0) {
+            setYear(year-1);
+        } else {
+            setYear(year);
+            return year
+        }
+    }
+
+    // ....
+    function getPrevMonth(){
+        if(month==0){
+            setMonth(11)
+        } else {
+            setMonth(month-1);
+        }
+    }
+ 
     function prev() {
-        // let prevtDates = [...draw(getPrevYear(), getPrevMonth() )]
-        // setDates(prevtDates);
         getPrevYear()
         getPrevMonth() 
-        // setDates( draw(getPrevYear(), getPrevMonth() ) );
     }
 
     function createInfoMonth(month){

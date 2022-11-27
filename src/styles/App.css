@@ -33,12 +33,14 @@ body{
 }
 
 #calendar{
-
+    
     max-width: 300px;
     margin: 0 auto;
     text-align: center;
     color: #31302EFF;
     color: steelblue;
+
+
 }
 
 table{
@@ -46,6 +48,7 @@ table{
 
     /*margin-top: 20px;*/
     margin: 20px auto 0;
+    
 }
 
 
