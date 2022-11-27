@@ -101,13 +101,13 @@ const Notes = () => {
     //     return sortedPosts.filter(post=>post.title.toLowerCase().includes(filter.query.toLowerCase()))
     // })
 
-    const saveChanges = (par) => {
-        let id = allNotes[0].dateId ;
-        // dispatch(saveChangesAction(par));
-        dispatch( setallNotesFindIdNotesAction(id) )
-        localStorage.setItem('key2',JSON.stringify(allNotes));
-        let initNotesAllCopy = JSON.parse(localStorage.getItem('key2') );
-    }
+    // const saveChanges = (par) => {
+    //     let id = allNotes[0].dateId ;
+    //     // dispatch(saveChangesAction(par));
+    //     dispatch( setallNotesFindIdNotesAction(id) )
+    //     localStorage.setItem('key2',JSON.stringify(allNotes));
+    //     let initNotesAllCopy = JSON.parse(localStorage.getItem('key2') );
+    // }
     useEffect(() => {
         localStorage.setItem('key2',JSON.stringify(allNotes));
     }, [allNotes])
@@ -117,6 +117,24 @@ const Notes = () => {
         localStorage.clear();
         setPosts(allNotes[0].notes);                  
     }
+
+
+
+    // <MyButton 
+    //  onClick={ ()=>saveChanges(posts) }
+    // >
+    //     зберегти зміни за цю дату
+    // </MyButton>
+
+     // <MyButton 
+     //    onClick={ ()=>setVisible(visible?false:true) }
+     // >
+     //   {visible ? 
+     //         'сховати записи'
+     //          :
+     //         'показати записи'
+     //   }
+     //</MyButton>
 
     return (
         <div className = "posts">
@@ -139,16 +157,8 @@ const Notes = () => {
             <PostList/>
 
             <div className="buttons">    
-                <MyButton 
-                    onClick={ ()=>saveChanges(posts) }
-                >
-                    зберегти зміни за цю дату
-                </MyButton>
-                <MyButton 
-                    onClick={ ()=>setVisible(false) }
-                >
-                    сховати записи
-                </MyButton>
+                
+               
                 <MyButton 
                     onClick={removeAllNotes}
                 >

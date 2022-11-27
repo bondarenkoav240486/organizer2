@@ -20,7 +20,7 @@ import {setNotesOfThisDateAction,
         setVisibleAction} from "../toolkitRedux/toolkitSlice";
 
 
-const ComponentDate = ({children, index, setShowNotesDate,}) => {
+const ComponentDate = ({children, index}) => {
     const dispatch = useDispatch();
     const allNotes = useSelector(state => state.toolkit.allNotes);
      const setAllNotes = (par) => ( 

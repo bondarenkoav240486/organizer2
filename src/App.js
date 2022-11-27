@@ -75,21 +75,27 @@ function App() {
                 <div className="calendarWrapper">
                     <Calendar/>
                 </div>
-                <>
-                    {cash}<br/>
-                    <button onClick={()=>addCash()}>add money</button>
-                    <button onClick={()=>setVisible(visible?false:true)}>visible</button>
-                </>
                 {
                     visible
                     ?
                     <>
-                        <Notes  
-                        />
+                        <Notes/>
                     </>
                     :
                     <></>
                 }
+                <>
+                     <MyButton 
+                         onClick={ ()=>setVisible(visible?false:true) }
+                    >
+                        {visible ? 
+                            'сховати записи'
+                            :
+                            'показати записи'
+                        }
+                    </MyButton>
+                </>
+
             </div>
         </div>
     );

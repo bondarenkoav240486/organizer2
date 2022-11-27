@@ -15,7 +15,7 @@ import {setallNotesFindIdNotesAction,
         setVisibleAction, 
         increment, } from "../toolkitRedux/toolkitSlice";
 
-const PostForm = ({initNotesAll}) => {
+const PostForm = () => {
     const dispatch = useDispatch();
     const initNotesAllState = useSelector(state => state.toolkit.initNotesAllState);
     const setInitNotesAllState = (par) => ( 
@@ -57,13 +57,13 @@ const PostForm = ({initNotesAll}) => {
         setSave(true)
     }
 
-    // const saveChanges = () => {
-    //     let id = allNotes[0].dateId ;
-    //     dispatch( setallNotesFindIdNotesAction(id) )
-    //     initNotesAll = allNotes;
-    //     localStorage.setItem('key2',JSON.stringify(allNotes));
-    //     let initNotesAllCopy = JSON.parse( localStorage.getItem('key2') );
-    // }
+    const saveChanges = () => {
+        let id = allNotes[0].dateId ;
+        dispatch( setallNotesFindIdNotesAction(id) )
+        // initNotesAll = allNotes;
+        localStorage.setItem('key2',JSON.stringify(allNotes));
+        // let initNotesAllCopy = JSON.parse( localStorage.getItem('key2') );
+    }
 
     const addNewPost = (e) => {
         e.preventDefault()
@@ -71,7 +71,7 @@ const PostForm = ({initNotesAll}) => {
             ...post, id: Date.now()
         }
         createPost(newPost)
-        // saveChanges();
+        saveChanges();
     }
 
     const editPost = (editedPost) => {
@@ -88,7 +88,7 @@ const PostForm = ({initNotesAll}) => {
         }
         editPost(editedPost);
         setModal(false)
-        // saveChanges(); 
+        saveChanges(); 
     }
 
     return (

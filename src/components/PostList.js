@@ -46,7 +46,6 @@ const PostList = () => {
     if (!sortedAndSearchedPosts.length) {
 
         return (
-
             <h1 style={{textAlign: 'center'}}>
                 {allNotes[0].dateId}
                 <br/>
