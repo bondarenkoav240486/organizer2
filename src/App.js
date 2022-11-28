@@ -8,7 +8,6 @@ import {setVisibleAction} from "./toolkitRedux/toolkitSlice";
 import './styles/App.css';
 import './styles/responsive.css';
 
-
 function App() {
     const dispatch = useDispatch();
     const visible = useSelector(state => state.toolkit.visible);

@@ -1,44 +1,29 @@
-// import React, {useMemo, useEffect, useState,useRef} from 'react';
 import React, {useMemo} from 'react';
 import PostItem from "./PostItem";
 import {TransitionGroup, CSSTransition} from "react-transition-group";
 import {useDispatch,useSelector} from "react-redux";
-import {
-        // saveChangesAction, 
-        // setModalAction, 
-        setFilterAction, 
-        // setSaveAction, 
-        // setPostAction, 
-        setPostsAction, 
-        // setAllNotesAction, 
-        // setVisibleAction,
-         } from "../toolkitRedux/toolkitSlice";
+import {setFilterAction, 
+        setPostsAction, } from "../toolkitRedux/toolkitSlice";
 
-// COMPONENT
 const PostList = () => {
     const dispatch = useDispatch();
-    const posts = useSelector(state => state.toolkit.posts);
-    const setPosts = (par) => ( 
-        dispatch(setPostsAction(par))
-    );
+    const dateNotes = useSelector(state => state.toolkit.dateNotes);
     const filter = useSelector(state => state.toolkit.filter);
-    const setFilter = (par) => ( 
-        dispatch(setFilterAction(par))
-    );
-   
     const allNotes = useSelector(state => state.toolkit.allNotes);
     
     let dateId = allNotes[0].dateId
 
+    console.log('dateNotes :', dateNotes)
+
     //POSTS sortedAndSearched....................................
     const sortedPosts = useMemo(()=>{
         if(filter.sort){
-            return  [...posts].sort( (a,b)=>{ 
+            return  [...dateNotes].sort( (a,b)=>{ 
                 return a[filter.sort].localeCompare(b[filter.sort]) 
             }) 
         }
-        return posts;
-    },[filter.sort,posts])
+        return dateNotes;
+    },[filter.sort,dateNotes])
     const sortedAndSearchedPosts = useMemo(()=>{
         return sortedPosts.filter(post=>post.title.toLowerCase().includes(filter.query.toLowerCase()))
     })
@@ -53,6 +38,8 @@ const PostList = () => {
             </h1>
         )
     }
+
+
 
     return (
         <div className="postlist">

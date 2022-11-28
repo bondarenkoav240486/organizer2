@@ -9,21 +9,24 @@ const toolkitSlice = createSlice({
 		allNotes:  
 			[
 				{
-				id:'postsFromallNotes0',
-				notes:[
-   					{id:'1', title:'STATEpostsFromallNotes0', body:''},
-   					{id:'11', title:'STATEpostsFromallNotes0', body:''},
-   					{id:'111', title:'STATEpostsFromallNotes0', body:''},
-					],
-				dateId:'Init!',
+					id:'postsFromallNotes0',
+					notes:
+						[
+   							{id:'1', title:'STATEpostsFromallNotes0', body:''},
+   							{id:'11', title:'STATEpostsFromallNotes0', body:''},
+   							{id:'111', title:'STATEpostsFromallNotes0', body:''},
+						],
+					dateId:'Init!',
 				},
 				{
 					id:'',
 					notes:[{id:'postsFromallNotes0', title:'postsFromallNotes0', body:'postsFromallNotes0'},],
 				},
 			],
-		posts:[],
-		post:{title:'!1',body:'!1'},
+		dateNotes:[
+   				{id:'111', title:'dateNoteSTATE', body:''},
+			],
+		dateNote:{title:'dateNoteSTATE',body:'dateNoteSTATE'},
 		save:true,
 		filter:{sort:'', query:''},
 		modal:false,
@@ -44,12 +47,12 @@ const toolkitSlice = createSlice({
 		setAllNotesAction(state,action) {
 			state.allNotes = action.payload
 		},
-		setPostsAction(state,action) {
-			state.posts =  action.payload
+		setDateNotesAction(state,action) {
+			state.dateNotes =  action.payload
 		},
 		// ююююююююююююююююююююююююююююююююююю
-		setPostAction(state,action) {
-			state.post =  action.payload
+		setDateNoteAction(state,action) {
+			state.dateNote =  action.payload
 		},
 		setSaveAction(state,action) {
 			state.save =  action.payload
@@ -83,11 +86,11 @@ const toolkitSlice = createSlice({
 		},
 		setNotesOfThisDateAction(state,action) {
 			// state.posts =   [...allNotes.find(elem=>elem.id==id).notes]  		
-			state.posts =   state.allNotes.find(elem=>elem.id==action.payload).notes  
+			state.dateNotes = state.allNotes.find(elem=>elem.id==action.payload).notes  
 		},
 		setallNotesFindIdNotesAction(state,action) {
 			// state.posts =   [...allNotes.find(elem=>elem.id==id).notes]  		
-			state.allNotes.find(elem=>elem.id==action.payload).notes = state.posts;
+			state.allNotes.find(elem=>elem.id==action.payload).notes = state.dateNotes;
         	// localStorage.setItem('key2',JSON.stringify(state.allNotes));
 		},
 	}	
@@ -107,8 +110,8 @@ export const {	setallNotesFindIdNotesAction,
 				setModalAction, 
 				setFilterAction, 
 				setSaveAction, 
-				setPostAction, 
-				setPostsAction, 
+				setDateNoteAction, 
+				setDateNotesAction, 
 				setAllNotesAction, 
 				setVisibleAction, 
 				increment} = toolkitSlice.actions
