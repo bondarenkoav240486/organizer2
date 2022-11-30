@@ -25,7 +25,7 @@ const PostItem = (props) => {
     );
 
     const saveChanges = () => {
-        let id = allNotes[0].dateId ;
+        let id = allNotes[0].selectedDate ;
         dispatch( setallNotesFindIdNotesAction(id) )
         localStorage.setItem('key2',JSON.stringify(allNotes));
     }

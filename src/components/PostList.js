@@ -13,7 +13,7 @@ const PostList = () => {
     
     let dateId = allNotes[0].dateId
 
-    console.log('dateNotes :', dateNotes)
+    // console.log('dateNotes :', dateNotes)
 
     //POSTS sortedAndSearched....................................
     const sortedPosts = useMemo(()=>{
@@ -44,7 +44,6 @@ const PostList = () => {
     return (
         <div className="postlist">
             <h1 style={{textAlign: 'center'}}>
-            {allNotes[0].dateId}
             </h1>
 
             <TransitionGroup >

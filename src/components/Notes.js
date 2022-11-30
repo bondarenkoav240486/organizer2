@@ -18,9 +18,6 @@ const Notes = () => {
     const setAllNotes = (par) => ( 
         dispatch(setAllNotesAction(par))
     );
-    // const setPosts = (par) => ( 
-    //     dispatch(setPostsAction(par))
-    // );
     const setDateNotes = (par) => ( 
         dispatch(setDateNotesAction(par))
     );
@@ -31,10 +28,11 @@ const Notes = () => {
         dispatch(setModalAction(par))
     );
 
+
+
     let bufferInitAllNotes;
    
     if (JSON.parse( localStorage.getItem('key2') )===null) {
-        // localStorage.setItem('key2',JSON.stringify(allNotes[0].notes));
         localStorage.setItem('key2',JSON.stringify(allNotes));
     }
     else{
@@ -51,6 +49,10 @@ const Notes = () => {
     useEffect(() => {
         setDateNotes( allNotes[0].notes);
     }, [allNotes[0].notes])
+
+    // useEffect(() => {
+    //     setallNotesDateIdTodayDate( allNotes[0].notes);
+    // }, [allNotes[0].notes])
    
     //delete all notes (from localStorage) 
     const removeAllNotes = () => {
@@ -60,6 +62,9 @@ const Notes = () => {
 
     return (
         <div className = "posts">
+             <br/>
+            {allNotes[0].selectedDate}
+            <br/>
             <MyButton 
                 onClick={()=>{
                         setModal(true);
@@ -79,8 +84,6 @@ const Notes = () => {
             <PostList/>
 
             <div className="buttons">    
-                
-               
                 <MyButton 
                     onClick={removeAllNotes}
                 >

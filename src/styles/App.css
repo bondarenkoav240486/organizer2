@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    border-radius: 5px;
+/*    border-radius: 5px;*/
 }
 
 * {
@@ -11,20 +11,18 @@
 }
 
 body{
-
-    min-height:100vh ;
-    background: beige;
+    min-height:100vh;
+    background: #404040;
     font-family: Arial, sans-serif;
+    color: #FFFFFF;
 }
 
-#root {
-
+/*#root {
     background: beige;
     color: #31302EFF;
-}
+}*/
 
 .App {
-
     padding: 40px;
 }
 
@@ -33,92 +31,91 @@ body{
 }
 
 #calendar{
-    
-    max-width: 300px;
+    max-width: 350px;
     margin: 0 auto;
     text-align: center;
     color: #31302EFF;
-    color: steelblue;
+    color:#FFFFFF;
+}
 
-
+.info{
+    font-weight: lighter  ;
+    font-size: 25px;
 }
 
 table{
-    color: steelblue;
-
+/*    color: steelblue;*/
     /*margin-top: 20px;*/
     margin: 20px auto 0;
-    
+    max-width: 350px;
 }
 
+td{
+/*    width: ;*/
+}
 
 textarea{
     resize: none;
 }
 
 .nav button{
-
-    font-size: 50px;
+    font-size: 32px;
     border: none;
     color: #31302EFF;
-    color: steelblue;
-
+    color: #FFFFFF;
 }
 
 .posts{
-
     max-width: 1040px;
     margin: 0px auto;
 }
 
 .posts button{
-
-    background: steelblue;
+    background: #0971DD;
     color: beige;
 }
 
 .PostForm {
-
     max-width: 1040px;
 }
 
 .PostFilter{
-
     margin-top: 30px;
 }
 
 .postlist{
-
     margin-top: 50px;
+}
+
+.postlist h1{
+    font-weight: lighter;
+    font-size: 30px;
+
 }
 
 .post {
     justify-content: space-between;
     padding: 5px;
-    /*border: 1px solid steelblue;*/
+    border-left: 5px solid #0971DD;
     margin-top: 10px;
-    background: lightblue;
+    background: #404040;
     overflow: hidden;
 }
 
 .post-enter {
-
   transform: translateX(350px);
 }
 
 .post-enter-active {
-
   transform: translateX(0px);
   transition: all 500ms ease-in;
 }
 
 .post-exit {
-
   opacity: 1;
 }
 
 .post-exit-active {
-
   transform: translateX(-350px);
   transition: all 500ms ease-in;
 }
@@ -140,19 +137,16 @@ textarea{
 }
 
 .posts .buttons{
-
     margin-top: 30px;
 }
 
 .posts button{
-
     margin-left: 5px;
     border: none;
     color: white;
 }
 
 td, th,button {
-
     padding: 5px 12px;
     cursor: pointer;
     text-align: center;
@@ -160,20 +154,17 @@ td, th,button {
 }
 
 input,textarea,select {
-
     padding: 5px 12px;
     cursor: pointer;
     color:  #31302EFF;
     /*border-color: steelblue;*/
     border: 1px solid steelblue;
     /*outline: red;*/
-
 }
 
 input:focus,textarea:focus,select:focus {
     outline: 4px solid lightblue;
     /*border-color: red;*/
-
 }
 
 .posts .buttons{

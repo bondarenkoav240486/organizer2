@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 import {useDispatch,useSelector} from "react-redux";
@@ -8,7 +9,7 @@ import {
         setVisibleAction
         } from "../toolkitRedux/toolkitSlice";
 
-const ComponentDate = ({children, index}) => {
+const ComponentDate = ({children, index,style}) => {
     const dispatch = useDispatch();
     const allNotes = useSelector(state => state.toolkit.allNotes);
     const setVisible = (par) => ( 
@@ -22,30 +23,33 @@ const ComponentDate = ({children, index}) => {
         
         let tdArr = Array.from(document.querySelectorAll('td'));
         tdArr.forEach((elem,i,arr) => {
-            elem.style.background = "transparent";
+            // elem.style.background = "transparent";
+            elem.style.outline = "none";
         })
         if( event.target.textContent !== ''){
-            event.target.style.background = "lightblue";
+            // event.target.style.background = "lightblue";
+            event.target.style.outline = "1px solid #0971DD";
         } else {
             return 
         }
 
-        let id = event.target.textContent + '.' + month + '.' + year;
+        let date = event.target.textContent + '.' + month + '.' + year;
         let obj ={};
 
         // за необхідності створюємо записник за цю дату
-        if( allNotes.find(elem=>elem.id==id)==undefined ){
+        if( allNotes.find(elem=>elem.date==date)==undefined ){
             obj = 
                 {
-                    id:id,
+                    id: Date.now(),
+                    date: date,
                     notes:[
                             {id:'111', title:'dateNoteOrganizeComponenetDAte', body:''},
                         ]
                 };
             dispatch( pushNewNotesDateAction(obj) );
         }
-        dispatch( setallNotesDateIdAction(id) );
-        dispatch( setNotesOfThisDateAction(id) );
+        dispatch( setallNotesDateIdAction(date) );
+        dispatch( setNotesOfThisDateAction(date) );
         // ...завершення функції organize
     }
 
@@ -53,6 +57,7 @@ const ComponentDate = ({children, index}) => {
     return (
         <td key={index}
             onClick = {organize}
+            style={style}
         >
             {children}
         </td> 

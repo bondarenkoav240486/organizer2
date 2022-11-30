@@ -18,6 +18,12 @@ function App() {
     return (
         <div className='App'  >
             <div className='organizer' >
+             <br/>
+            {(new Date().getDay())
+                + '.' + new Date().getDate()
+                + '.' +(new Date().getMonth()+1)
+            }
+            <br/>
                 <div className="calendarWrapper">
                     <Calendar/>
                 </div>

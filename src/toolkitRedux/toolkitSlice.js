@@ -9,14 +9,16 @@ const toolkitSlice = createSlice({
 		allNotes:  
 			[
 				{
-					id:'postsFromallNotes0',
+					// id:'postsFromallNotes0',
+					id: Date.now(),
+					date:'intDateState',
 					notes:
 						[
    							{id:'1', title:'STATEpostsFromallNotes0', body:''},
    							{id:'11', title:'STATEpostsFromallNotes0', body:''},
    							{id:'111', title:'STATEpostsFromallNotes0', body:''},
 						],
-					dateId:'Init!',
+					selectedDate:'Init!',
 				},
 				{
 					id:'',
@@ -81,17 +83,13 @@ const toolkitSlice = createSlice({
 			state.allNotes.push(action.payload)
 		},
 		setallNotesDateIdAction(state,action) {
-			state.allNotes[0].dateId = state.allNotes.find(elem=>elem.id==action.payload).id
-			// state.allNotes[0].dateId = action.payload
+			state.allNotes[0].selectedDate = state.allNotes.find(elem=>elem.date==action.payload).date
 		},
 		setNotesOfThisDateAction(state,action) {
-			// state.posts =   [...allNotes.find(elem=>elem.id==id).notes]  		
-			state.dateNotes = state.allNotes.find(elem=>elem.id==action.payload).notes  
+			state.dateNotes = state.allNotes.find(elem=>elem.date==action.payload).notes  
 		},
 		setallNotesFindIdNotesAction(state,action) {
-			// state.posts =   [...allNotes.find(elem=>elem.id==id).notes]  		
-			state.allNotes.find(elem=>elem.id==action.payload).notes = state.dateNotes;
-        	// localStorage.setItem('key2',JSON.stringify(state.allNotes));
+			state.allNotes.find(elem=>elem.date==action.payload).notes = state.dateNotes;
 		},
 	}	
 })

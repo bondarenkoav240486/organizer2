@@ -38,8 +38,8 @@ const PostForm = () => {
     }
 
     const saveChanges = () => {
-        let id = allNotes[0].dateId ;
-        dispatch( setallNotesFindIdNotesAction(id) )
+        let date = allNotes[0].selectedDate ;
+        dispatch( setallNotesFindIdNotesAction(date) )
         localStorage.setItem('key2',JSON.stringify(allNotes));
     }
 

@@ -19,6 +19,7 @@ const Calendar = () => {
         dispatch(setMonthAction(par))
     );
     let initDates = draw(year, month)
+    // console.log(initDates)
     const dates = useSelector(state => state.toolkit.dates);
     const setDates = (par) => ( 
         dispatch(setDatesAction(par))
@@ -90,7 +91,7 @@ const Calendar = () => {
         let firstWeekDay = getFirstWeekDay(year, month);    
         let lastWeekDay  = getLastWeekDay(year, month);
         let datesBuffer = chunk(normalize(arr, firstWeekDay, 
-            6 - lastWeekDay), 7); 
+            6 - lastWeekDay), 7);
 
         return datesBuffer
     }
@@ -160,13 +161,13 @@ const Calendar = () => {
             <table>
                 <thead>
                     <tr>
-                        <th>пн</th>
-                        <th>вт</th>
-                        <th>ср</th>
-                        <th>чт</th>
-                        <th>пт</th>
-                        <th>сб</th>
-                        <th>нд</th>
+                        <td>пн</td>
+                        <td>вт</td>
+                        <td>ср</td>
+                        <td>чт</td>
+                        <td>пт</td>
+                        <td>сб</td>
+                        <td>нд</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -175,6 +176,19 @@ const Calendar = () => {
                             {week.map((date, index) =>
                                 <ComponentDate 
                                     key={index}
+                                    style = {
+                                        date == '' + new Date().getDate()
+                                        &&month==new Date().getMonth()
+                                        &&year==new Date().getFullYear() ?
+                                        { 
+                                            background: ' #0971DD',
+                                        // }
+                                        // {
+                                            color: '#FFFFFF'
+                                        }
+                                        :
+                                        { }
+                                    }
                                 >
                                     {date}
                                 </ComponentDate>
