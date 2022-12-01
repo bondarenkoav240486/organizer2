@@ -40,15 +40,21 @@ const PostItem = (props) => {
         setModal(true);
     }
 
+
+
+    // <MyButton onClick={() => openPost(props.post)}>
+                //     відкрити
+                // </MyButton>
+
     return (
-        <div className="post">
+        <div className="post"
+                onClick={() => openPost(props.post)}       
+        >
             <div className="post__content">
                 <strong>{props.post.title}</strong>
             </div>
             <div className="post__btns">
-                <MyButton onClick={() => openPost(props.post)}>
-                    відкрити
-                </MyButton>
+                
                 <MyButton onClick={() => removePost(props.post)}>
                     x
                 </MyButton>

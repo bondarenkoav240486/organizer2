@@ -10,7 +10,12 @@ import {setModalAction,
         setDateNoteAction, 
         setDateNotesAction, 
         setAllNotesAction, 
-        setVisibleAction} from "../toolkitRedux/toolkitSlice";
+        setVisibleAction,
+        setNotesOfThisDateAction, 
+        setallNotesDateIdAction, 
+        pushNewNotesDateAction, 
+        initSelectedDateAction,
+    } from "../toolkitRedux/toolkitSlice";
 
 const Notes = () => {
     const dispatch = useDispatch();
@@ -27,6 +32,18 @@ const Notes = () => {
     const setModal = (par) => ( 
         dispatch(setModalAction(par))
     );
+    const setNotesOfThisDate =  (par) => ( 
+        dispatch(setNotesOfThisDateAction(par))
+    );
+
+    const setVisible = (par) => ( 
+        dispatch(setVisibleAction(par))
+    );
+     const initSelectedDate = (par) => ( 
+        dispatch(initSelectedDateAction(par))
+    );
+    const year = useSelector(state => state.toolkit.year);
+    const month = useSelector(state => state.toolkit.month);
 
 
 
@@ -36,24 +53,54 @@ const Notes = () => {
         localStorage.setItem('key2',JSON.stringify(allNotes));
     }
     else{
-         bufferInitAllNotes= JSON.parse( localStorage.getItem('key2') );
+        bufferInitAllNotes= JSON.parse( localStorage.getItem('key2') );
     }
     
     useEffect(() => {
-        setAllNotes(bufferInitAllNotes)       
+        setAllNotes(bufferInitAllNotes);
+        initSelectedDate(todayDate);
     }, []);
     useEffect(() => {
         localStorage.setItem('key2',JSON.stringify(allNotes));
     }, [allNotes]);
-
-    useEffect(() => {
-        setDateNotes( allNotes[0].notes);
-    }, [allNotes[0].notes])
+    
+    let todayDate = 
+                    new Date().getDate()
+                    + '.' 
+                    + new Date().getMonth()
+                    + '.' 
+                    + new Date().getFullYear();
 
     // useEffect(() => {
-    //     setallNotesDateIdTodayDate( allNotes[0].notes);
-    // }, [allNotes[0].notes])
-   
+    //     initSelectedDate(todayDate);
+    // }, []);
+
+
+    // console.log(   
+    //     allNotes.find(
+    //         elem => elem.date === todayDate
+    //     ),
+    //     todayDate
+    // );
+
+    useEffect(() => {
+        if(
+            allNotes.find(
+                elem => elem.date === todayDate
+            ) === undefined 
+        )
+        {
+            setDateNotes(allNotes[0].notes);
+
+        } else {        
+            setDateNotes(
+                allNotes.find(
+                        elem => elem.date === todayDate
+                ).notes
+            );
+        }
+    }, [allNotes[0].notes]);
+
     //delete all notes (from localStorage) 
     const removeAllNotes = () => {
         localStorage.clear();
@@ -62,10 +109,23 @@ const Notes = () => {
 
     return (
         <div className = "posts">
-             <br/>
-            {allNotes[0].selectedDate}
+            <hr style={{margin: '15px'}}/>
             <br/>
-            <MyButton 
+             allNotes[0].selectedDate : 
+             <br/>
+            {allNotes[0].selectedDate === todayDate
+                ?
+                'Сьогодні'
+                :
+                allNotes[0].selectedDate
+            }
+             <br/>
+             todayDate : 
+             <br/>
+            { todayDate}
+            <br/>
+            <MyButton
+                id = "createNoteOrEvent" 
                 onClick={()=>{
                         setModal(true);
                         setDateNote({title:'!@2',body:'!!!22'});

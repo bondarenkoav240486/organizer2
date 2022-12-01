@@ -18,7 +18,11 @@ const toolkitSlice = createSlice({
    							{id:'11', title:'STATEpostsFromallNotes0', body:''},
    							{id:'111', title:'STATEpostsFromallNotes0', body:''},
 						],
-					selectedDate:'Init!',
+					selectedDate:new Date().getDate()+1 
+					+ '.' 
+					+ new Date().getMonth()
+					+ '.' 
+					+ new Date().getFullYear(),
 				},
 				{
 					id:'',
@@ -86,11 +90,15 @@ const toolkitSlice = createSlice({
 			state.allNotes[0].selectedDate = state.allNotes.find(elem=>elem.date==action.payload).date
 		},
 		setNotesOfThisDateAction(state,action) {
-			state.dateNotes = state.allNotes.find(elem=>elem.date==action.payload).notes  
+			state.dateNotes = 
+				state.allNotes.find(elem=>elem.date==action.payload).notes  
 		},
 		setallNotesFindIdNotesAction(state,action) {
 			state.allNotes.find(elem=>elem.date==action.payload).notes = state.dateNotes;
 		},
+		initSelectedDateAction(state,action) {
+			state.allNotes[0].selectedDate = action.payload
+		}
 	}	
 })
 
@@ -112,4 +120,6 @@ export const {	setallNotesFindIdNotesAction,
 				setDateNotesAction, 
 				setAllNotesAction, 
 				setVisibleAction, 
-				increment} = toolkitSlice.actions
+				increment,
+				initSelectedDateAction,
+			} = toolkitSlice.actions
