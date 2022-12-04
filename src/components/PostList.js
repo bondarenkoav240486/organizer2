@@ -34,7 +34,7 @@ const PostList = () => {
             <h1 style={{textAlign: 'center'}}>
                 {allNotes[0].dateId}
                 <br/>
-                Записи не знайдені !
+                Записи не знайдені 
             </h1>
         )
     }

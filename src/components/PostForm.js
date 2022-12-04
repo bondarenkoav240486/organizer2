@@ -85,7 +85,7 @@ const PostForm = () => {
                 <MyButton 
                     onClick={save ? addNewPost : saveEditedPost}
                 >
-                    Зберегти запис
+                    Зберегти подію або нагадування
                 </MyButton>
             </form>
         </div>

@@ -1,6 +1,12 @@
 .myInput {
-    
     width: 100%;
     padding: 5px 15px;
     margin: 5px 0;
+    background: #8B8887;
+    color: white;
+}
+
+.myInput:focus {
+    background: white ;
+    color: black;
 }

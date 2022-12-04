@@ -48,14 +48,19 @@ const PostItem = (props) => {
 
     return (
         <div className="post"
-                onClick={() => openPost(props.post)}       
         >
-            <div className="post__content">
-                <strong>{props.post.title}</strong>
+            <div className="post__content"
+                onClick={() => openPost(props.post)}         
+            >
+                {props.post.title}
             </div>
             <div className="post__btns">
                 
-                <MyButton onClick={() => removePost(props.post)}>
+                <MyButton 
+                    onClick={
+                        () => removePost(props.post)
+                    }
+                >
                     x
                 </MyButton>
             </div>

@@ -18,7 +18,7 @@ const toolkitSlice = createSlice({
    							{id:'11', title:'STATEpostsFromallNotes0', body:''},
    							{id:'111', title:'STATEpostsFromallNotes0', body:''},
 						],
-					selectedDate:new Date().getDate()+1 
+					selectedDate:new Date().getDate() 
 					+ '.' 
 					+ new Date().getMonth()
 					+ '.' 

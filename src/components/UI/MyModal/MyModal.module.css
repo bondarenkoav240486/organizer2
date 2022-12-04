@@ -1,24 +1,40 @@
 .myModal {
-
     position: fixed;
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
     display: none;
-    background: rgba(0,0,0, 0.5);
+    background: rgba(0,0,0, 0.9);
 }
 
 .myModalContent {
-
     padding: 25px;
-    background: white;
-    border-radius: 16px;
+    background: #404040;
+/*    border-radius: 16px;*/
     min-width: 250px;
+    border: 1px solid #8B8887;
+}
+
+.myModalContent input, 
+.myModalContent textarea{
+    padding: 25px;
+    background: #404040;
+/*    border-radius: 16px;*/
+    min-width: 250px;
+    border: 1px solid #8B8887;
+    color: white;
+
+}
+
+.myModalContent input:focus, 
+.myModalContent textarea:focus{
+    background: white;
+    color: black;
+/*    border: 1px solid #8B8887;*/
 }
 
 .myModal.active {
-    
     display: flex;
     justify-content: center;
     align-items: center;

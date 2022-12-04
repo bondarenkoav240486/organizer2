@@ -2,6 +2,7 @@
 import React, {useEffect} from 'react';
 import PostList from './PostList';
 import MyButton from './UI/button/MyButton.js';
+import MyModal from "../components/UI/MyModal/MyModal";
 import PostForm from './PostForm';
 import PostFilter from './PostFilter.js';
 import {TransitionGroup, CSSTransition} from "react-transition-group";
@@ -23,12 +24,16 @@ const Notes = () => {
     const setAllNotes = (par) => ( 
         dispatch(setAllNotesAction(par))
     );
+    // const setModal = (par) => ( 
+    //     dispatch(setModalAction(par))
+    // );
     const setDateNotes = (par) => ( 
         dispatch(setDateNotesAction(par))
     );
     const setDateNote = (par) => ( 
         dispatch(setDateNoteAction(par))
     );
+    const modal = useSelector(state => state.toolkit.modal);
     const setModal = (par) => ( 
         dispatch(setModalAction(par))
     );
@@ -71,18 +76,6 @@ const Notes = () => {
                     + '.' 
                     + new Date().getFullYear();
 
-    // useEffect(() => {
-    //     initSelectedDate(todayDate);
-    // }, []);
-
-
-    // console.log(   
-    //     allNotes.find(
-    //         elem => elem.date === todayDate
-    //     ),
-    //     todayDate
-    // );
-
     useEffect(() => {
         if(
             allNotes.find(
@@ -107,22 +100,62 @@ const Notes = () => {
         setDateNotes(allNotes[0].notes);                  
     }
 
+    const getTodayDayOfWeek = (numberOfDay) => {
+        let  daysOfWeek = 
+            [
+                'Неділя','Понеділок','Вівторок','Середа', 
+                'Четвер',"П'ятниця",'Субота',
+            ];
+
+        return daysOfWeek[numberOfDay]
+    }
+
+    function getTodayMonth(numberOfMonth){
+        let  monthes = 
+            [
+                'січня','лютого','березня','квітня', 
+                'травня','червня','липня','серпня',
+                'вересня','жовтня','листопада','грудня'
+            ];
+
+        return monthes[numberOfMonth]
+    }
+
+    const getDecoratedSelectedDate = () => {
+        let objectDateOfSelectedDate = new Date(
+            allNotes[0].selectedDate.split('.')[2],
+            allNotes[0].selectedDate.split('.')[1],
+            allNotes[0].selectedDate.split('.')[0]
+        )
+        console.log( allNotes[0].selectedDate )
+         return getTodayDayOfWeek(
+                    objectDateOfSelectedDate.getDay()
+                )
+                + ' ' 
+                + objectDateOfSelectedDate.getDate()
+                + ' '
+                + getTodayMonth( 
+                    objectDateOfSelectedDate.getMonth()
+                )
+                + ' '
+                + objectDateOfSelectedDate.getFullYear()
+                + ' p.'
+
+    }
+    //   useEffect(() => {
+        getDecoratedSelectedDate()
+    // }, []);
+
     return (
         <div className = "posts">
             <hr style={{margin: '15px'}}/>
             <br/>
-             allNotes[0].selectedDate : 
-             <br/>
             {allNotes[0].selectedDate === todayDate
                 ?
                 'Сьогодні'
                 :
-                allNotes[0].selectedDate
+                getDecoratedSelectedDate()
             }
-             <br/>
-             todayDate : 
-             <br/>
-            { todayDate}
             <br/>
             <MyButton
                 id = "createNoteOrEvent" 
@@ -133,11 +166,15 @@ const Notes = () => {
                 }   
                 style={{marginTop:'30px'}}
             >
-                Сворити запис
+                Додайте подію або нагадування
             </MyButton>
-
-            <PostForm/>
-            <hr style={{margin: '15px'}}/>
+            
+            <MyModal 
+                visible={modal}
+                setVisible={setModal}
+            >
+                <PostForm/>
+            </MyModal>
 
             <PostFilter/>
 
@@ -145,6 +182,7 @@ const Notes = () => {
 
             <div className="buttons">    
                 <MyButton 
+                    id = 'removeAllNotes'
                     onClick={removeAllNotes}
                 >
                     видалити всі записи

@@ -19,7 +19,6 @@ const Calendar = () => {
         dispatch(setMonthAction(par))
     );
     let initDates = draw(year, month)
-    // console.log(initDates)
     const dates = useSelector(state => state.toolkit.dates);
     const setDates = (par) => ( 
         dispatch(setDatesAction(par))
@@ -158,56 +157,57 @@ const Calendar = () => {
                 {createInfoMonth(month) + " "}
                 {year}  
             </h1>
-            <table>
-                <thead>
-                    <tr>
-                        <td>пн</td>
-                        <td>вт</td>
-                        <td>ср</td>
-                        <td>чт</td>
-                        <td>пт</td>
-                        <td>сб</td>
-                        <td>нд</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {dates.map((week, index) =>
-                        <tr key={index}>
-                            {week.map((date, index) =>
-                                <ComponentDate 
-                                    key={index}
-                                    style = {
-                                        date == '' + new Date().getDate()
-                                        &&month==new Date().getMonth()
-                                        &&year==new Date().getFullYear() ?
-                                        { 
-                                            background: ' #0971DD',
-                                        // }
-                                        // {
-                                            color: '#FFFFFF'
-                                        }
-                                        :
-                                        { }
-                                    }
-                                >
-                                    {date}
-                                </ComponentDate>
-                            )} 
+
+            <div className = 'calendarTableWrapper'>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>пн</td>
+                            <td>вт</td>
+                            <td>ср</td>
+                            <td>чт</td>
+                            <td>пт</td>
+                            <td>сб</td>
+                            <td>нд</td>
                         </tr>
-                    )}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {dates.map((week, index) =>
+                            <tr key={index}>
+                                {week.map((date, index) =>
+                                    <ComponentDate 
+                                        key={index}
+                                        style = {
+                                            date == '' + new Date().getDate()
+                                            &&month==new Date().getMonth()
+                                            &&year==new Date().getFullYear() ?
+                                            { 
+                                                background: ' #0971DD',
+                                                color: '#FFFFFF'
+                                            }
+                                            :
+                                            { }
+                                        }
+                                    >
+                                        {date}
+                                    </ComponentDate>
+                                )} 
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
 
             <div className="nav">
                 <MyButton 
                     onClick={prev }
                 >
-                    ←  
+                    &lt;  
                 </MyButton>
                 <MyButton 
                     onClick={next }
                 >
-                    →
+                    &gt;    
                 </MyButton>
             </div>
        </div>

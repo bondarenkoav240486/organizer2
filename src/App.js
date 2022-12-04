@@ -18,7 +18,6 @@ function App() {
     
     return (
         <div className='App'  >
-
             <div className='organizer' >
                 <InfoToday/>
                 <br/>
@@ -34,9 +33,10 @@ function App() {
                     :
                     <></>
                 }
-                <>
-                     <MyButton 
-                         onClick={ ()=>setVisible(visible?false:true) }
+                <div className = 'buttons'>
+                    <MyButton 
+                        onClick={ ()=>setVisible(visible?false:true) }
+                        id = 'showNotes'    
                     >
                         {visible ? 
                             'Приховати розклад'
@@ -44,7 +44,7 @@ function App() {
                             'Показати розклад'
                         }
                     </MyButton>
-                </>
+                </div>
             </div>
         </div>
     );

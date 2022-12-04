@@ -3,60 +3,55 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-/*    border-radius: 5px;*/
-}
-
-* {
-  -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body{
     min-height:100vh;
-    background: #404040;
+/*    background: #17212B;#242F3D*/
+    background:#242F3D;
     font-family: Arial, sans-serif;
     color: #FFFFFF;
+    font-weight: lighter;
+    font-size: 16px;
 }
 
-/*#root {
-    background: beige;
-    color: #31302EFF;
-}*/
-
 .App {
-    padding: 40px;
+    padding: 10px;
+}
+
+#infoToday #clock{
+    font-size: 25px;
 }
 
 hr{
-    color: #8B8886;
-/*    border:0.5px solid #88ACC6;*/
     border:0.5px solid #8B8886;
 }
-.calendarWrapper{
-/*  min-height: calc(100vh - 45vh);*/
-}
 
+/*CALENDAR............................................*/
 #calendar{
-    max-width: 350px;
+    max-width: 450px;
     margin: 0 auto;
     text-align: center;
     color: #31302EFF;
     color:#FFFFFF;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .info{
-    font-weight: lighter  ;
+    font-weight: lighter;
     font-size: 25px;
 }
 
-table{
-/*    color: steelblue;*/
-    /*margin-top: 20px;*/
-    margin: 20px auto 0;
-    max-width: 350px;
+.calendarTableWrapper{
+    min-height: calc(100vh - 33vh);
 }
 
-td{
-/*    width: ;*/
+table{
+    margin: 20px auto 0;
+    max-width: 450px;
 }
 
 textarea{
@@ -64,12 +59,14 @@ textarea{
 }
 
 .nav button{
-    font-size: 32px;
+    width: 25% ;
+    font-size: 20px;
+    font-weight: lighter;
     border: none;
-    color: #31302EFF;
     color: #FFFFFF;
 }
 
+/*NOTES..............................................*/
 .posts{
     max-width: 1040px;
     margin: 0px auto;
@@ -80,37 +77,46 @@ textarea{
     color: beige;
 }
 
-/*#createNoteOrEvent{
-    width: 100%;
-    margin-right: 0px;
-    margin-left: 0px;
-}*/
+.posts button:hover{
+    outline: 1px solid #7097BB;
+}
+
+.posts button:active{
+    background: #8B8886 ;
+}
 
 .PostForm {
     max-width: 1040px;
 }
 
 .PostFilter{
-    margin-top: 30px;
+    margin-top: 10px;
+}
+
+.PostFilter input,
+.PostFilter select,{
+    color: white;
 }
 
 .postlist{
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 .postlist h1{
     font-weight: lighter;
     font-size: 30px;
-
 }
 
 .post {
     justify-content: space-between;
-    padding: 5px;
     border-left: 5px solid #0971DD;
     margin-top: 10px;
-    background: #404040;
+    margin-right: 15px;
     overflow: hidden;
+}
+
+.post__content{
+    color: white;
 }
 
 .post-enter {
@@ -135,16 +141,31 @@ textarea{
     display: inline-block;
     word-wrap: break-word;
     max-width: 100%;
+    min-width: 94%;
+    height: 95%;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 .post__btns {
     display: inline-block;
+    padding-top: 10px;
     float:right ;
 }
 
 .post__content strong{
     margin-left: 10px;
     color: steelblue;
+}
+
+.postlist{
+    max-height: 350px;
+    overflow: auto;
+}
+
+.posts h1{
+    font-weight: normal ;
+    font-size: 25px ;
 }
 
 .posts .buttons{
@@ -161,25 +182,40 @@ td, th,button {
     padding: 5px 12px;
     cursor: pointer;
     text-align: center;
-    /*color:  #31302EFF;*/
 }
 
 input,textarea,select {
     padding: 5px 12px;
     cursor: pointer;
     color:  #31302EFF;
-    /*border-color: steelblue;*/
-/*    border: 1px solid steelblue;*/
-    /*outline: red;*/
+    color:  white;
+    background: #8B8887;
+    border: none;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+   color:    white;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    white;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    white;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color:    white;
 }
 
 input:focus,textarea:focus,select:focus {
-    outline: 4px solid lightblue;
-    /*border-color: red;*/
+    outline: 1px solid #628DBB;
+    outline: 1px solid #4AB1E1;
+    background: white;
+    color: black;
 }
 
 .posts .buttons{
     display: flex;
+    justify-content: flex-end;
 }
 
 .posts .buttons button:nth-child(3){
@@ -188,5 +224,18 @@ input:focus,textarea:focus,select:focus {
     margin-right: 5px;
 }
 
+button#removeAllNotes{
+    background: #FF0101;
+}
+
+.App .buttons {
+    display: flex;
+    justify-content: flex-end;    
+}
+
+#showNotes{
+    color: white;
+    border: 1px solid #8B8886;
+}
 
 
