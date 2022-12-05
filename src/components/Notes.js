@@ -7,7 +7,8 @@ import NoteForm from './NoteForm';
 import NotesFilter from './NotesFilter.js';
 import {TransitionGroup, CSSTransition} from "react-transition-group";
 import {useDispatch,useSelector} from "react-redux";
-import {setModalAction, 
+import {
+        setModalAction, 
         setDateNoteAction, 
         setDateNotesAction, 
         setAllNotesAction, 
