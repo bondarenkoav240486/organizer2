@@ -123,7 +123,6 @@ textarea{
 
 .post__content {
     flex-grow: 3;
-/*    word-wrap: break-word;*/
     padding-bottom: 10px;
     padding-top: 10px;
 }
