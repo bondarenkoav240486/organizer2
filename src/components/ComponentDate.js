@@ -23,11 +23,9 @@ const ComponentDate = ({children, index,style}) => {
         
         let tdArr = Array.from(document.querySelectorAll('td'));
         tdArr.forEach((elem,i,arr) => {
-            // elem.style.background = "transparent";
             elem.style.outline = "none";
         })
         if( event.target.textContent !== ''){
-            // event.target.style.background = "lightblue";
             event.target.style.outline = "1px solid #0971DD";
         } else {
             return 
@@ -42,9 +40,7 @@ const ComponentDate = ({children, index,style}) => {
                 {
                     id: Date.now(),
                     date: date,
-                    notes:[
-                            // {id:'111', title:'dateNoteOrganizeComponenetDAte', body:''},
-                        ]
+                    notes:[]
                 };
             dispatch( pushNewNotesDateAction(obj) );
         }

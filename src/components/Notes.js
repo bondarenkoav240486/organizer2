@@ -159,7 +159,7 @@ const Notes = () => {
                 }   
                 style={{marginTop:'30px'}}
             >
-                Додайте подію або нагадування
+                Додати подію або нагадування
             </MyButton>
             
             <MyModal 
