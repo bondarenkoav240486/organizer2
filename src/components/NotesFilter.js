@@ -5,7 +5,7 @@ import MySelect from "./UI/select/MySelect";
 import {setFilterAction} from "../toolkitRedux/toolkitSlice";
 import {useDispatch,useSelector} from "react-redux";
 
-const PostFilter = () => {
+const NotesFilter = () => {
      const dispatch = useDispatch();
      const filter = useSelector(state => state.toolkit.filter);
      const setFilter = (par) => ( 
@@ -13,20 +13,20 @@ const PostFilter = () => {
      );
 
     return (
-          <div  className='PostFilter'>
+          <div  className='notesFilter'>
                <MyInput 
                     value={filter.query}
                     onChange={e=>setFilter({...filter,query:e.target.value})}
-                    placeholder="пошук..."
+                    placeholder="Пошук..."
                / >
                <MySelect
                     value={filter.sort}
                     onChange={selectedSort=>setFilter({...filter,sort:selectedSort})}
-                    defaultValue='сортування'
+                    defaultValue='Cортування'
                     options={
                          [
-                              {value:'title',name:'за назвою'},
-                              {value:'body',name:'за змістом'},
+                              {value:'title',name:'За назвою'},
+                              {value:'body',name:'За змістом'},
                          ]
                     }
                />
@@ -34,4 +34,4 @@ const PostFilter = () => {
     );
 };
 
-export default PostFilter;
+export default NotesFilter;

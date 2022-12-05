@@ -43,7 +43,7 @@ const ComponentDate = ({children, index,style}) => {
                     id: Date.now(),
                     date: date,
                     notes:[
-                            {id:'111', title:'dateNoteOrganizeComponenetDAte', body:''},
+                            // {id:'111', title:'dateNoteOrganizeComponenetDAte', body:''},
                         ]
                 };
             dispatch( pushNewNotesDateAction(obj) );

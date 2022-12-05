@@ -12,7 +12,7 @@ import {setallNotesFindIdNotesAction,
         setVisibleAction,
         } from "../toolkitRedux/toolkitSlice";
 
-const PostForm = () => {
+const NoteForm = () => {
     const dispatch = useDispatch();
     const allNotes = useSelector(state => state.toolkit.allNotes);
     const dateNotes = useSelector(state => state.toolkit.dateNotes);
@@ -69,18 +69,18 @@ const PostForm = () => {
     }
 
     return (
-        <div className="PostForm">
+        <div className="noteForm">
             <form>
                 <MyInput
                     value={dateNote.title}
                     onChange={e=>setDateNote({ ...dateNote, title: e.target.value})}
                     type='text' 
-                    placeholder='заголовок' 
+                    placeholder='Заголовок' 
                 />
                 <MyTextArea type='text' 
                     value={dateNote.body}
                     onChange={e=>setDateNote({ ...dateNote, body: e.target.value})}
-                    placeholder='зміст' 
+                    placeholder='Зміст' 
                 />
                 <MyButton 
                     onClick={save ? addNewPost : saveEditedPost}
@@ -92,4 +92,4 @@ const PostForm = () => {
     )
 };
 
-export default PostForm;
+export default NoteForm;

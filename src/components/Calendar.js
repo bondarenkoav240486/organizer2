@@ -82,6 +82,7 @@ const Calendar = () => {
         for(let i = 0;i<amountWeeks;i++ ){
             arr2.push(arr.splice(0,n));
         }
+
         return arr2
     }
 
@@ -121,6 +122,7 @@ const Calendar = () => {
             setYear(year-1);
         } else {
             setYear(year);
+            
             return year
         }
     }

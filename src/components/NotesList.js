@@ -1,19 +1,17 @@
 import React, {useMemo} from 'react';
-import PostItem from "./PostItem";
+import NoteItem from "./NoteItem";
 import {TransitionGroup, CSSTransition} from "react-transition-group";
 import {useDispatch,useSelector} from "react-redux";
 import {setFilterAction, 
         setPostsAction, } from "../toolkitRedux/toolkitSlice";
 
-const PostList = () => {
+const NotesList = () => {
     const dispatch = useDispatch();
     const dateNotes = useSelector(state => state.toolkit.dateNotes);
     const filter = useSelector(state => state.toolkit.filter);
     const allNotes = useSelector(state => state.toolkit.allNotes);
     
     let dateId = allNotes[0].dateId
-
-    // console.log('dateNotes :', dateNotes)
 
     //POSTS sortedAndSearched....................................
     const sortedPosts = useMemo(()=>{
@@ -31,15 +29,16 @@ const PostList = () => {
     if (!sortedAndSearchedPosts.length) {
 
         return (
-            <h1 style={{textAlign: 'center'}}>
+            <h1 
+                className = 'notesNotFound'
+                style={{textAlign: 'center'}}
+            >
                 {allNotes[0].dateId}
                 <br/>
                 Записи не знайдені 
             </h1>
         )
     }
-
-
 
     return (
         <div className="postlist">
@@ -53,7 +52,7 @@ const PostList = () => {
                         timeout={500}
                         classNames="post"
                     >
-                        <PostItem 
+                        <NoteItem 
                             key={post.id}
                             number={index + 1} 
                             post={post}
@@ -65,4 +64,4 @@ const PostList = () => {
     );
 };
 
-export default PostList ;
+export default NotesList ;

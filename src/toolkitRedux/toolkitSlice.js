@@ -1,38 +1,26 @@
 import {createSlice} from '@reduxjs/toolkit'
 
-
 const toolkitSlice = createSlice({
-
 	name: "toolkit",
 	initialState: {
 		visible: true,
 		allNotes:  
 			[
 				{
-					// id:'postsFromallNotes0',
 					id: Date.now(),
-					date:'intDateState',
-					notes:
-						[
-   							{id:'1', title:'STATEpostsFromallNotes0', body:''},
-   							{id:'11', title:'STATEpostsFromallNotes0', body:''},
-   							{id:'111', title:'STATEpostsFromallNotes0', body:''},
-						],
+					date:'',
+					notes:[],
 					selectedDate:new Date().getDate() 
 					+ '.' 
 					+ new Date().getMonth()
 					+ '.' 
 					+ new Date().getFullYear(),
 				},
-				{
-					id:'',
-					notes:[{id:'postsFromallNotes0', title:'postsFromallNotes0', body:'postsFromallNotes0'},],
-				},
 			],
 		dateNotes:[
-   				{id:'111', title:'dateNoteSTATE', body:''},
+   				// {id:'111', title:'dateNoteSTATE', body:''},
 			],
-		dateNote:{title:'dateNoteSTATE',body:'dateNoteSTATE'},
+		dateNote:{title:'',body:''},
 		save:true,
 		filter:{sort:'', query:''},
 		modal:false,
@@ -56,7 +44,7 @@ const toolkitSlice = createSlice({
 		setDateNotesAction(state,action) {
 			state.dateNotes =  action.payload
 		},
-		// ююююююююююююююююююююююююююююююююююю
+		// ....................................................
 		setDateNoteAction(state,action) {
 			state.dateNote =  action.payload
 		},
@@ -82,7 +70,7 @@ const toolkitSlice = createSlice({
 		setDatesAction(state,action) {
 			state.dates =  action.payload
 		},
-		// юююююююююююююююююююююююююююююююююююююююююююююююююююююю
+		// .......................................................
 		pushNewNotesDateAction(state,action) {
 			state.allNotes.push(action.payload)
 		},

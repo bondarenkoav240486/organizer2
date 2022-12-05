@@ -7,7 +7,7 @@ import {setallNotesFindIdNotesAction,
         setDateNoteAction, 
         setDateNotesAction} from "../toolkitRedux/toolkitSlice";
 
-const PostItem = (props) => {
+const NoteItem = (props) => {
     const dispatch = useDispatch();
     const allNotes = useSelector(state => state.toolkit.allNotes);
     const dateNotes = useSelector(state => state.toolkit.dateNotes);
@@ -40,12 +40,6 @@ const PostItem = (props) => {
         setModal(true);
     }
 
-
-
-    // <MyButton onClick={() => openPost(props.post)}>
-                //     відкрити
-                // </MyButton>
-
     return (
         <div className="post"
         >
@@ -68,4 +62,4 @@ const PostItem = (props) => {
     );
 };
 
-export default PostItem;
+export default NoteItem;

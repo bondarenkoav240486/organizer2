@@ -1,47 +1,30 @@
 
-
-
-
 @media screen and (max-width:768px){
-
-  #root     {
-
-    font-size: 0.9rem;
-}
+  #root {
+        font-size: 0.9rem;
+    }
 }
 
 @media screen and (max-width:600px){
-
    #root{
-
-    font-size: 0.85rem;
+        font-size: 0.85rem;
+    }
+    .posts .buttons button:nth-child(3){
+        margin-left: 10px;
+    }
 }
-
-.posts .buttons button:nth-child(3){
-    margin-left: 10px;
-    
-}
-}
-
 
 @media screen and (max-width:400px){
-
- #root{
-
-    font-size: 0.80rem;
-}
-
-td, th,button {
-
-   padding: 11px 11px;
-}
-
+     #root{
+        font-size: 0.80rem;
+    }
+    td, th,button {
+         padding: 11px 11px;
+    }
 }
 
 @media screen and (max-height:400px){
-
     .calendarWrapper{
         min-height: calc(100vh - 20vh);
     }
-
 }

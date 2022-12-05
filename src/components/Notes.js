@@ -1,10 +1,10 @@
 
 import React, {useEffect} from 'react';
-import PostList from './PostList';
+import NotesList from './NotesList';
 import MyButton from './UI/button/MyButton.js';
 import MyModal from "../components/UI/MyModal/MyModal";
-import PostForm from './PostForm';
-import PostFilter from './PostFilter.js';
+import NoteForm from './NoteForm';
+import NotesFilter from './NotesFilter.js';
 import {TransitionGroup, CSSTransition} from "react-transition-group";
 import {useDispatch,useSelector} from "react-redux";
 import {setModalAction, 
@@ -24,10 +24,7 @@ const Notes = () => {
     const setAllNotes = (par) => ( 
         dispatch(setAllNotesAction(par))
     );
-    // const setModal = (par) => ( 
-    //     dispatch(setModalAction(par))
-    // );
-    const setDateNotes = (par) => ( 
+        const setDateNotes = (par) => ( 
         dispatch(setDateNotesAction(par))
     );
     const setDateNote = (par) => ( 
@@ -40,7 +37,6 @@ const Notes = () => {
     const setNotesOfThisDate =  (par) => ( 
         dispatch(setNotesOfThisDateAction(par))
     );
-
     const setVisible = (par) => ( 
         dispatch(setVisibleAction(par))
     );
@@ -49,8 +45,6 @@ const Notes = () => {
     );
     const year = useSelector(state => state.toolkit.year);
     const month = useSelector(state => state.toolkit.month);
-
-
 
     let bufferInitAllNotes;
    
@@ -110,7 +104,7 @@ const Notes = () => {
         return daysOfWeek[numberOfDay]
     }
 
-    function getTodayMonth(numberOfMonth){
+    const getTodayMonth = (numberOfMonth) => {
         let  monthes = 
             [
                 'січня','лютого','березня','квітня', 
@@ -127,7 +121,7 @@ const Notes = () => {
             allNotes[0].selectedDate.split('.')[1],
             allNotes[0].selectedDate.split('.')[0]
         )
-        console.log( allNotes[0].selectedDate )
+
          return getTodayDayOfWeek(
                     objectDateOfSelectedDate.getDay()
                 )
@@ -140,28 +134,26 @@ const Notes = () => {
                 + ' '
                 + objectDateOfSelectedDate.getFullYear()
                 + ' p.'
-
     }
-    //   useEffect(() => {
-        getDecoratedSelectedDate()
-    // }, []);
 
     return (
-        <div className = "posts">
+        <div className = "dateNotes">
             <hr style={{margin: '15px'}}/>
             <br/>
-            {allNotes[0].selectedDate === todayDate
-                ?
-                'Сьогодні'
-                :
-                getDecoratedSelectedDate()
-            }
+            <div className = 'selectedDate'>
+                {allNotes[0].selectedDate === todayDate
+                    ?
+                    'Сьогодні'
+                    :
+                    getDecoratedSelectedDate()
+                }
+            </div>
             <br/>
             <MyButton
                 id = "createNoteOrEvent" 
                 onClick={()=>{
                         setModal(true);
-                        setDateNote({title:'!@2',body:'!!!22'});
+                        setDateNote({title:'',body:''});
                     }
                 }   
                 style={{marginTop:'30px'}}
@@ -173,19 +165,19 @@ const Notes = () => {
                 visible={modal}
                 setVisible={setModal}
             >
-                <PostForm/>
+                <NoteForm/>
             </MyModal>
 
-            <PostFilter/>
+            <NotesFilter/>
 
-            <PostList/>
+            <NotesList/>
 
             <div className="buttons">    
                 <MyButton 
                     id = 'removeAllNotes'
                     onClick={removeAllNotes}
                 >
-                    видалити всі записи
+                    Bидалити всі записи
                 </MyButton>
             </div>
         </div>
