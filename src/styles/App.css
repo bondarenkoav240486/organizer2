@@ -19,6 +19,8 @@ body{
 
 .App {
     padding: 10px;
+    max-width: 1040px;
+    margin: 0 auto;
 }
 
 #infoToday #clock{
