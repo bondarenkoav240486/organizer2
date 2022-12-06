@@ -92,7 +92,7 @@ const Notes = () => {
     //delete all notes (from localStorage) 
     const removeAllNotes = () => {
         localStorage.clear();
-        setDateNotes(allNotes[0].notes);                  
+        // setDateNotes(allNotes[0].notes);                  
     }
 
     const getTodayDayOfWeek = (numberOfDay) => {
