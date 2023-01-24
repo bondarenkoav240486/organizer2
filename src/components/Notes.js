@@ -51,6 +51,7 @@ const Notes = () => {
    
     if (JSON.parse( localStorage.getItem('key2') )===null) {
         localStorage.setItem('key2',JSON.stringify(allNotes));
+        bufferInitAllNotes = allNotes;
     }
     else{
         bufferInitAllNotes= JSON.parse( localStorage.getItem('key2') );
@@ -100,7 +101,21 @@ const Notes = () => {
     //delete all notes (from localStorage) 
     const removeAllNotes = () => {
         localStorage.clear();
-        // setDateNotes(allNotes[0].notes);                  
+        // setDateNotes(allNotes[0].notes); 
+        setAllNotes(
+            [
+                {
+                    id: Date.now(),
+                    date:'',
+                    notes:[],
+                    selectedDate:new Date().getDate() 
+                    + '.' 
+                    + new Date().getMonth()
+                    + '.' 
+                    + new Date().getFullYear(),
+                },
+            ]
+        )                 
     }
 
     const getTodayDayOfWeek = (numberOfDay) => {
