@@ -78,7 +78,15 @@ const Notes = () => {
             ) === undefined 
         )
         {
-            setDateNotes(allNotes[0].notes);
+            // setDateNotes(allNotes[0].notes);
+            let obj = 
+                {
+                    id: Date.now(),
+                    date: todayDate,
+                    notes:[]
+                };
+            dispatch( pushNewNotesDateAction(obj) );
+            setDateNotes(obj.notes);
 
         } else {        
             setDateNotes(
